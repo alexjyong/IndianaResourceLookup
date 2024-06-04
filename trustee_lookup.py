@@ -1,8 +1,8 @@
 import googlemaps
 import json
 
-# Replace with your Google Maps API key 
-gmaps = googlemaps.Client(key='YOUR_API_KEY') #yes this should be an env file. don't judge me
+
+gmaps = googlemaps.Client(key='') 
 
 indiana_counties = [
     "Adams", "Allen", "Bartholomew", "Benton", "Blackford", "Boone", "Brown",
@@ -38,33 +38,47 @@ def replace_unicode_spaces(data):
   else:
     return data
 
+def is_location_in_county(lat, lng, county_name):
+    """Checks if a given latitude and longitude are within a specific county."""
+    geocode_result = gmaps.reverse_geocode((lat, lng))
+    if geocode_result:
+        address_components = geocode_result[0].get('address_components', [])
+        for component in address_components:
+            if "administrative_area_level_2" in component['types'] and component['long_name'] == f"{county_name} County":
+                return True
+    return False
+
 for county in indiana_counties:
-    search_query = f"township trustee office {county}, Indiana"
+    search_query = f"township trustee office {county} County Indiana"
     places_result = gmaps.places(search_query)
 
     for place in places_result['results']:
-        place_info = {
-            "County": county,
-            "Name": place.get('name', 'N/A'),
-            "Address": place.get('formatted_address', 'N/A'),
-            "Phone": 'N/A',  
-            "Website": place.get('website', 'N/A'),
-            "Latitude": place['geometry']['location']['lat'],
-            "Longitude": place['geometry']['location']['lng']
-        }
+        lat = place['geometry']['location']['lat']
+        lng = place['geometry']['location']['lng']
 
-        # --- Place Details Request (gets phone and hours) --- 
-        place_details = gmaps.place(place_id=place['place_id'])
-        if 'formatted_phone_number' in place_details['result']:
-            place_info["Phone"] = place_details['result']['formatted_phone_number']
+        if is_location_in_county(lat, lng, county):
+            place_info = {
+                "County": county,
+                "Name": place.get('name', 'N/A'),
+                "Address": place.get('formatted_address', 'N/A'),
+                "Phone": 'N/A',  
+                "Website": place.get('website', 'N/A'),
+                "Latitude": lat,
+                "Longitude": lng
+            }
 
-        # Get opening hours from Place Details
-        if 'opening_hours' in place_details['result']:
-            place_info["Hours"] = place_details['result']['opening_hours'].get('weekday_text', 'N/A')
+            # --- Place Details Request (gets phone and hours) --- 
+            place_details = gmaps.place(place_id=place['place_id'])
+            if 'formatted_phone_number' in place_details['result']:
+                place_info["Phone"] = place_details['result']['formatted_phone_number']
 
-        # --- Clean up Unicode Spaces Before Saving ---
-        place_info = replace_unicode_spaces(place_info) 
-        all_township_data.append(place_info)
+            # Get opening hours from Place Details
+            if 'opening_hours' in place_details['result']:
+                place_info["Hours"] = place_details['result']['opening_hours'].get('weekday_text', 'N/A')
+
+            # --- Clean up Unicode Spaces Before Saving ---
+            place_info = replace_unicode_spaces(place_info) 
+            all_township_data.append(place_info)
 
 # Save data to a JSON file
 with open("indiana_township_trustees.json", "w", encoding='utf-8') as f:
