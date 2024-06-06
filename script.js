@@ -74,7 +74,7 @@ function createCard(data, type) {
                 <p class="card-text">
                     <strong>Address:</strong> ${data.Address}<br>
                     <strong>Phone:</strong> <a href="tel:${data.Phone}">${data.Phone}</a><br>
-                    <strong>Website:</strong> <a href="${data.Website}" target="_blank">${data.Website}</a><br>
+                    <strong>Website:</strong> ${data.Website && data.Website !== "N/A" ? `<a href="${data.Website}" target="_blank">${data.Website}</a>` : 'No website available'}<br>
                     <strong>Hours:</strong>
                     <ul>
                     ${data.Hours ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}
