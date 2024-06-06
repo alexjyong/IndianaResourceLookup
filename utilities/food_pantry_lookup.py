@@ -1,8 +1,10 @@
 import googlemaps
 import json
+import os
 
+google_api_key = os.getenv("GOOGLE_API_KEY")
 
-gmaps = googlemaps.Client(key='') 
+gmaps = googlemaps.Client(key=google_api_key) 
 
 indiana_counties = [
     "Adams", "Allen", "Bartholomew", "Benton", "Blackford", "Boone", "Brown",
@@ -82,7 +84,7 @@ for county in indiana_counties:
             all_township_data.append(place_info)
 
 # Save data to a JSON file
-with open("indiana_food_pantries.json", "w", encoding='utf-8') as f:
+with open("../indiana_food_pantries.json", "w", encoding='utf-8') as f:
     json.dump(all_township_data, f, indent=4)
 
 print("Data saved to indiana_food_pantries.json")
