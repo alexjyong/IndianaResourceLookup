@@ -30,14 +30,14 @@ $(document).ready(function() {
         displayResults(selectedCounty);
     });
 
-    fetch('trustees.json')
+    fetch('utilities/data/indiana_township_trustees.json')
         .then(response => response.json())
         .then(data => {
             trusteeData = data;
         })
         .catch(error => console.error('Error loading trustee data:', error));
 
-    fetch('foodPantries.json')
+    fetch('utilities/data/indiana_food_pantries.json')
         .then(response => response.json())
         .then(data => {
             foodPantryData = data;
