@@ -8,15 +8,38 @@
     <style>
         body {
             padding: 20px;
+            background-color: #f8f9fa;
         }
         .card {
             margin-bottom: 20px;
+            border: 1px solid #dee2e6;
+        }
+        .card-body {
+            background-color: #ffffff;
+            border-radius: 0.25rem;
+        }
+        .card-title {
+            color: #007bff;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .form-control {
+            border-radius: 0.25rem;
+        }
+        #results {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center">Indiana Trustee and Food Pantry Lookup</h1>
+        <h1 class="text-center text-primary">Indiana Trustee and Food Pantry Lookup</h1>
         <div class="form-group">
             <label for="countySelect">Select County:</label>
             <select class="form-control" id="countySelect">
