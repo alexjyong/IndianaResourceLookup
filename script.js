@@ -77,7 +77,7 @@ function createCard(data, type) {
                     <strong>Website:</strong> ${data.Website}<br>
                     <strong>Hours:</strong>
                     <ul>
-                        ${data.Hours.map(hour => `<li>${hour}</li>`).join('')}
+                    ${data.Hours ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}
                     </ul>
                 </p>
             </div>
