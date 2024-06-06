@@ -1,29 +1,17 @@
-const indianaCounties = [
-    "Adams", "Allen", "Bartholomew", "Benton", "Blackford", "Boone", "Brown",
-    "Carroll", "Cass", "Clark", "Clay", "Clinton", "Crawford", "Daviess",
-    "Dearborn", "Decatur", "DeKalb", "Delaware", "Dubois", "Elkhart",
-    "Fayette", "Floyd", "Fountain", "Franklin", "Fulton", "Gibson",
-    "Grant", "Greene", "Hamilton", "Hancock", "Harrison", "Hendricks",
-    "Henry", "Howard", "Huntington", "Jackson", "Jasper", "Jay", "Jefferson",
-    "Jennings", "Johnson", "Knox", "Kosciusko", "LaGrange", "Lake",
-    "LaPorte", "Lawrence", "Madison", "Marion", "Marshall", "Martin",
-    "Miami", "Monroe", "Montgomery", "Morgan", "Newton", "Noble",
-    "Ohio", "Orange", "Owen", "Parke", "Perry", "Pike", "Porter",
-    "Posey", "Pulaski", "Putnam", "Randolph", "Ripley", "Rush", "St. Joseph",
-    "Scott", "Shelby", "Spencer", "Starke", "Steuben", "Sullivan",
-    "Switzerland", "Tippecanoe", "Tipton", "Union", "Vanderburgh",
-    "Vermillion", "Vigo", "Wabash", "Warren", "Warrick", "Washington",
-    "Wayne", "Wells", "White", "Whitley"
-];
-
 let trusteeData = [];
 let foodPantryData = [];
 
 $(document).ready(function() {
     const countySelect = $('#countySelect');
-    indianaCounties.forEach(county => {
-        countySelect.append(`<option value="${county}">${county}</option>`);
-    });
+
+    fetch('utilities/data/counties.json')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(county => {
+                countySelect.append(`<option value="${county}">${county}</option>`);
+            });
+        })
+        .catch(error => console.error('Error loading counties:', error));
 
     countySelect.change(function() {
         const selectedCounty = $(this).val();
