@@ -80,6 +80,10 @@ function updateMap(county) {
 }
 
 function createPopupContent(data, type) {
+    const directionsLink = data.Address ? 
+        `<a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.Address)}" target="_blank">Get Directions</a>` : 
+        `<a href="https://www.google.com/maps/dir/?api=1&destination=${data.Latitude},${data.Longitude}" target="_blank">Get Directions</a>`;
+
     return `
         <strong>${data.Name} (${type})</strong><br>
         <strong>Address:</strong> ${data.Address}<br>
@@ -87,6 +91,7 @@ function createPopupContent(data, type) {
         <strong>Website:</strong> ${data.Website && data.Website !== "N/A" ? `<a href="${data.Website}" target="_blank">${data.Website}</a>` : 'No website available'}<br>
         <strong>Hours:</strong><br>
         <ul>${data.Hours ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}</ul>
+        ${directionsLink}<br>
         <a href="#" class="report-link" data-name="${data.Name}" data-toggle="modal" data-target="#reportModal">Report Bad Information</a>
     `;
 }
@@ -119,6 +124,10 @@ function displayResults(county) {
 }
 
 function createCard(data, type) {
+    const directionsLink = data.Address ? 
+        `<a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.Address)}" target="_blank">Get Directions</a>` : 
+        `<a href="https://www.google.com/maps/dir/?api=1&destination=${data.Latitude},${data.Longitude}" target="_blank">Get Directions</a>`;
+
     return `
         <div class="card">
             <div class="card-body">
@@ -131,9 +140,16 @@ function createCard(data, type) {
                     <ul>
                     ${data.Hours ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}
                     </ul>
+                    ${directionsLink}<br>
                     <a href="#" class="report-link" data-name="${data.Name}" data-toggle="modal" data-target="#reportModal">Report Bad Information</a>
                 </p>
             </div>
         </div>
     `;
 }
+
+// Add event listener for report links
+$(document).on('click', '.report-link', function() {
+    const locationName = $(this).data('name');
+    $('#location').val(locationName);
+});
