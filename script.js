@@ -8,6 +8,9 @@ $(document).ready(function() {
     const countySelect = $('#countySelect');
     const filterSelect = $('#filterSelect');
 
+    // Add default option to county select
+    countySelect.append(`<option value="" selected>Select a county</option>`);
+
     fetch('utilities/data/counties_bounding_boxes.json')
         .then(response => response.json())
         .then(data => {
@@ -56,20 +59,22 @@ function initializeMap() {
     }).addTo(map);
 }
 
-const trusteeIcon = L.divIcon({
-    className: 'custom-div-icon',
-    html: "<div style='background-color:#1f77b4; width: 18px; height: 18px; border-radius: 50%;'></div>",
-    iconSize: [20, 20],
-    iconAnchor: [10, 10],
-    popupAnchor: [0, -10]
+const trusteeIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
 });
 
-const foodPantryIcon = L.divIcon({
-    className: 'custom-div-icon',
-    html: "<div style='background-color:#ff7f0e; width: 18px; height: 18px; border-radius: 50%;'></div>",
-    iconSize: [20, 20],
-    iconAnchor: [10, 10],
-    popupAnchor: [0, -10]
+const foodPantryIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
 });
 
 function updateMap(county, filter) {
