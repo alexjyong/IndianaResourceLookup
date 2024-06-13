@@ -6,6 +6,10 @@ let markers = [];
 
 $(document).ready(function() {
     const countySelect = $('#countySelect');
+    const filterSelect = $('#filterSelect');
+
+    // Add default option to county select
+    countySelect.append(`<option value="" selected>Select a county</option>`);
 
     fetch('utilities/data/counties_bounding_boxes.json')
         .then(response => response.json())
@@ -19,8 +23,16 @@ $(document).ready(function() {
 
     countySelect.change(function() {
         const selectedCounty = $(this).val();
-        displayResults(selectedCounty);
-        updateMap(selectedCounty);
+        const selectedFilter = filterSelect.val();
+        displayResults(selectedCounty, selectedFilter);
+        updateMap(selectedCounty, selectedFilter);
+    });
+
+    filterSelect.change(function() {
+        const selectedCounty = countySelect.val();
+        const selectedFilter = $(this).val();
+        displayResults(selectedCounty, selectedFilter);
+        updateMap(selectedCounty, selectedFilter);
     });
 
     fetch('utilities/data/indiana_township_trustees.json')
@@ -47,7 +59,25 @@ function initializeMap() {
     }).addTo(map);
 }
 
-function updateMap(county) {
+const trusteeIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+
+const foodPantryIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
+
+function updateMap(county, filter) {
     markers.forEach(marker => map.removeLayer(marker));
     markers = [];
 
@@ -58,20 +88,23 @@ function updateMap(county) {
         map.fitBounds(bounds);
     }
 
-    const trustees = trusteeData.filter(item => item.County === county);
-    const foodPantries = foodPantryData.filter(item => item.County === county);
+    if (filter === 'all' || filter === 'trustee') {
+        const trustees = trusteeData.filter(item => item.County === county);
+        trustees.forEach(trustee => {
+            const marker = L.marker([trustee.Latitude, trustee.Longitude], { icon: trusteeIcon }).addTo(map);
+            marker.bindPopup(createPopupContent(trustee, 'Trustee'));
+            markers.push(marker);
+        });
+    }
 
-    trustees.forEach(trustee => {
-        const marker = L.marker([trustee.Latitude, trustee.Longitude]).addTo(map);
-        marker.bindPopup(createPopupContent(trustee, 'Trustee'));
-        markers.push(marker);
-    });
-
-    foodPantries.forEach(foodPantry => {
-        const marker = L.marker([foodPantry.Latitude, foodPantry.Longitude]).addTo(map);
-        marker.bindPopup(createPopupContent(foodPantry, 'Food Pantry'));
-        markers.push(marker);
-    });
+    if (filter === 'all' || filter === 'food_pantry') {
+        const foodPantries = foodPantryData.filter(item => item.County === county);
+        foodPantries.forEach(foodPantry => {
+            const marker = L.marker([foodPantry.Latitude, foodPantry.Longitude], { icon: foodPantryIcon }).addTo(map);
+            marker.bindPopup(createPopupContent(foodPantry, 'Food Pantry'));
+            markers.push(marker);
+        });
+    }
 
     if (markers.length > 0) {
         const group = new L.featureGroup(markers);
@@ -96,25 +129,23 @@ function createPopupContent(data, type) {
     `;
 }
 
-function displayResults(county) {
+function displayResults(county, filter) {
     const resultsDiv = $('#results');
     resultsDiv.empty();
 
-    const trustees = trusteeData.filter(item => item.County === county);
-    const foodPantries = foodPantryData.filter(item => item.County === county);
-
-    if (trustees.length === 0 && foodPantries.length === 0) {
-        resultsDiv.append('<p>No data available for this county.</p>');
-        return;
+    if (filter === 'all' || filter === 'trustee') {
+        const trustees = trusteeData.filter(item => item.County === county);
+        trustees.forEach(trustee => {
+            resultsDiv.append(createCard(trustee, 'Trustee'));
+        });
     }
 
-    trustees.forEach(trustee => {
-        resultsDiv.append(createCard(trustee, 'Trustee'));
-    });
-
-    foodPantries.forEach(foodPantry => {
-        resultsDiv.append(createCard(foodPantry, 'Food Pantry'));
-    });
+    if (filter === 'all' || filter === 'food_pantry') {
+        const foodPantries = foodPantryData.filter(item => item.County === county);
+        foodPantries.forEach(foodPantry => {
+            resultsDiv.append(createCard(foodPantry, 'Food Pantry'));
+        });
+    }
 
     // Add event listener for report links
     $('.report-link').on('click', function() {
