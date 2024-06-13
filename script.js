@@ -87,7 +87,7 @@ function createPopupContent(data, type) {
         <strong>Website:</strong> ${data.Website && data.Website !== "N/A" ? `<a href="${data.Website}" target="_blank">${data.Website}</a>` : 'No website available'}<br>
         <strong>Hours:</strong><br>
         <ul>${data.Hours ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}</ul>
-        <a href="https://www.google.com/maps/dir/?api=1&destination=${data.Latitude},${data.Longitude}" target="_blank">Get Directions</a>
+        <a href="#" class="report-link" data-name="${data.Name}" data-toggle="modal" data-target="#reportModal">Report Bad Information</a>
     `;
 }
 
@@ -110,6 +110,12 @@ function displayResults(county) {
     foodPantries.forEach(foodPantry => {
         resultsDiv.append(createCard(foodPantry, 'Food Pantry'));
     });
+
+    // Add event listener for report links
+    $('.report-link').on('click', function() {
+        const locationName = $(this).data('name');
+        $('#location').val(locationName);
+    });
 }
 
 function createCard(data, type) {
@@ -125,6 +131,7 @@ function createCard(data, type) {
                     <ul>
                     ${data.Hours ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}
                     </ul>
+                    <a href="#" class="report-link" data-name="${data.Name}" data-toggle="modal" data-target="#reportModal">Report Bad Information</a>
                 </p>
             </div>
         </div>
