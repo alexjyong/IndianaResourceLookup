@@ -1,16 +1,18 @@
 let trusteeData = [];
 let foodPantryData = [];
+let countyData = [];
 let map;
 let markers = [];
 
 $(document).ready(function() {
     const countySelect = $('#countySelect');
 
-    fetch('utilities/data/counties.json')
+    fetch('utilities/data/counties_bounding_boxes.json')
         .then(response => response.json())
         .then(data => {
+            countyData = data;
             data.forEach(county => {
-                countySelect.append(`<option value="${county}">${county}</option>`);
+                countySelect.append(`<option value="${county.name}">${county.name}</option>`);
             });
         })
         .catch(error => console.error('Error loading counties:', error));
@@ -48,6 +50,13 @@ function initializeMap() {
 function updateMap(county) {
     markers.forEach(marker => map.removeLayer(marker));
     markers = [];
+
+    const countyInfo = countyData.find(c => c.name === county);
+    if (countyInfo) {
+        const bbox = countyInfo.bbox;
+        const bounds = [[bbox.southwest.lat, bbox.southwest.lng], [bbox.northeast.lat, bbox.northeast.lng]];
+        map.fitBounds(bounds);
+    }
 
     const trustees = trusteeData.filter(item => item.County === county);
     const foodPantries = foodPantryData.filter(item => item.County === county);
