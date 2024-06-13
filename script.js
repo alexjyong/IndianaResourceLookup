@@ -1,5 +1,7 @@
 let trusteeData = [];
 let foodPantryData = [];
+let map;
+let markers = [];
 
 $(document).ready(function() {
     const countySelect = $('#countySelect');
@@ -16,6 +18,7 @@ $(document).ready(function() {
     countySelect.change(function() {
         const selectedCounty = $(this).val();
         displayResults(selectedCounty);
+        updateMap(selectedCounty);
     });
 
     fetch('utilities/data/indiana_township_trustees.json')
@@ -31,7 +34,53 @@ $(document).ready(function() {
             foodPantryData = data;
         })
         .catch(error => console.error('Error loading food pantry data:', error));
+
+    initializeMap();
 });
+
+function initializeMap() {
+    map = L.map('map').setView([40.2672, -86.1349], 7); // Centered on Indiana
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+}
+
+function updateMap(county) {
+    markers.forEach(marker => map.removeLayer(marker));
+    markers = [];
+
+    const trustees = trusteeData.filter(item => item.County === county);
+    const foodPantries = foodPantryData.filter(item => item.County === county);
+
+    trustees.forEach(trustee => {
+        const marker = L.marker([trustee.Latitude, trustee.Longitude]).addTo(map);
+        marker.bindPopup(createPopupContent(trustee, 'Trustee'));
+        markers.push(marker);
+    });
+
+    foodPantries.forEach(foodPantry => {
+        const marker = L.marker([foodPantry.Latitude, foodPantry.Longitude]).addTo(map);
+        marker.bindPopup(createPopupContent(foodPantry, 'Food Pantry'));
+        markers.push(marker);
+    });
+
+    if (markers.length > 0) {
+        const group = new L.featureGroup(markers);
+        map.fitBounds(group.getBounds());
+    }
+}
+
+function createPopupContent(data, type) {
+    return `
+        <strong>${data.Name} (${type})</strong><br>
+        <strong>Address:</strong> ${data.Address}<br>
+        <strong>Phone:</strong> <a href="tel:${data.Phone}">${data.Phone}</a><br>
+        <strong>Website:</strong> ${data.Website && data.Website !== "N/A" ? `<a href="${data.Website}" target="_blank">${data.Website}</a>` : 'No website available'}<br>
+        <strong>Hours:</strong><br>
+        <ul>${data.Hours ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}</ul>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=${data.Latitude},${data.Longitude}" target="_blank">Get Directions</a>
+    `;
+}
 
 function displayResults(county) {
     const resultsDiv = $('#results');
