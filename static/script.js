@@ -73,8 +73,9 @@ $(document).ready(function() {
                         marker.bindPopup(createPopupContent(trustee, 'Trustee'));
                         markers.push(marker);
 
-                        // Zoom to the trustee location
+                        // Zoom to the trustee location and open the popup
                         map.setView([trustee.Latitude, trustee.Longitude], 12);
+                        marker.openPopup();
 
                         // Update results
                         resultsDiv.empty();
@@ -210,7 +211,8 @@ function createCard(data, type) {
                     <strong>Phone:</strong> <a href="tel:${data.Phone}">${data.Phone}</a><br>
                     <strong>Website:</strong> ${data.Website && data.Website !== "N/A" ? `<a href="${data.Website}" target="_blank">${data.Website}</a>` : 'No website available'}<br>
                     <strong>Hours:</strong>
-                    <ul>${data.Hours ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}</ul>
+                    <ul>${data.Hours ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}
+                    </ul>
                     ${directionsLink}<br>
                     <a href="#" class="report-link" data-name="${data.Name}" data-toggle="modal" data-target="#reportModal">Report Bad Information</a>
                 </p>
