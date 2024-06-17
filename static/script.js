@@ -7,11 +7,14 @@ let markers = [];
 $(document).ready(function() {
     const countySelect = $('#countySelect');
     const filterSelect = $('#filterSelect');
+    const addressForm = $('#addressForm');
+    const addressInput = $('#addressInput');
+    const resultsDiv = $('#results'); // Define resultsDiv here
 
     // Add default option to county select
     countySelect.append(`<option value="" selected>Select a county</option>`);
 
-    fetch('utilities/data/counties_bounding_boxes.json')
+    fetch('static/utilities/data/counties_bounding_boxes.json')
         .then(response => response.json())
         .then(data => {
             countyData = data;
@@ -35,19 +38,58 @@ $(document).ready(function() {
         updateMap(selectedCounty, selectedFilter);
     });
 
-    fetch('utilities/data/indiana_township_trustees.json')
+    fetch('static/utilities/data/indiana_township_trustees.json')
         .then(response => response.json())
         .then(data => {
             trusteeData = data;
         })
         .catch(error => console.error('Error loading trustee data:', error));
 
-    fetch('utilities/data/indiana_food_pantries.json')
+    fetch('static/utilities/data/indiana_food_pantries.json')
         .then(response => response.json())
         .then(data => {
             foodPantryData = data;
         })
         .catch(error => console.error('Error loading food pantry data:', error));
+
+    addressForm.submit(function(event) {
+        event.preventDefault();
+        const address = addressInput.val();
+        if (address) {
+            fetch(`/geocode?address=${encodeURIComponent(address)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.trustee) {
+                        const trustee = data.trustee;
+                        const county = data.county;
+                        const township = data.township;
+
+                        // Clear existing markers
+                        markers.forEach(marker => map.removeLayer(marker));
+                        markers = [];
+
+                        // Add trustee marker
+                        const marker = L.marker([trustee.Latitude, trustee.Longitude], { icon: trusteeIcon }).addTo(map);
+                        marker.bindPopup(createPopupContent(trustee, 'Trustee'));
+                        markers.push(marker);
+
+                        // Zoom to the trustee location
+                        map.setView([trustee.Latitude, trustee.Longitude], 12);
+
+                        // Update results
+                        resultsDiv.empty();
+                        resultsDiv.append(createCard(trustee, 'Trustee'));
+
+                    } else if (data.county) {
+                        alert(`No immediate trustee found for your address in ${data.county}. Showing other results in that area.`);
+                        countySelect.val(data.county).change();
+                    } else {
+                        alert('Address not found or invalid');
+                    }
+                })
+                .catch(error => console.error('Error geocoding address:', error));
+        }
+    });
 
     initializeMap();
 });
@@ -168,9 +210,7 @@ function createCard(data, type) {
                     <strong>Phone:</strong> <a href="tel:${data.Phone}">${data.Phone}</a><br>
                     <strong>Website:</strong> ${data.Website && data.Website !== "N/A" ? `<a href="${data.Website}" target="_blank">${data.Website}</a>` : 'No website available'}<br>
                     <strong>Hours:</strong>
-                    <ul>
-                    ${data.Hours ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}
-                    </ul>
+                    <ul>${data.Hours ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}</ul>
                     ${directionsLink}<br>
                     <a href="#" class="report-link" data-name="${data.Name}" data-toggle="modal" data-target="#reportModal">Report Bad Information</a>
                 </p>
