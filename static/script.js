@@ -26,6 +26,7 @@ $(document).ready(function() {
 
     countySelect.change(function() {
         const selectedCounty = $(this).val();
+        $('#countyName').text(selectedCounty);
         const selectedFilter = filterSelect.val();
         displayResults(selectedCounty, selectedFilter);
         updateMap(selectedCounty, selectedFilter);
@@ -70,20 +71,21 @@ $(document).ready(function() {
 
                         // Add trustee marker
                         const marker = L.marker([trustee.Latitude, trustee.Longitude], { icon: trusteeIcon }).addTo(map);
-                        marker.bindPopup(createPopupContent(trustee, 'Trustee'));
+                        marker.bindPopup(createPopupContent(trustee, 'Trustee')).openPopup();
                         markers.push(marker);
 
                         // Zoom to the trustee location and open the popup
                         map.setView([trustee.Latitude, trustee.Longitude], 12);
-                        marker.openPopup();
 
                         // Update results
                         resultsDiv.empty();
                         resultsDiv.append(createCard(trustee, 'Trustee'));
+                        $('#countyName').text(county);
 
                     } else if (data.county) {
                         alert(`No immediate trustee found for your address in ${data.county}. Showing other results in that area.`);
                         countySelect.val(data.county).change();
+                        $('#countyName').text(data.county);
                     } else {
                         alert('Address not found or invalid');
                     }
@@ -211,7 +213,8 @@ function createCard(data, type) {
                     <strong>Phone:</strong> <a href="tel:${data.Phone}">${data.Phone}</a><br>
                     <strong>Website:</strong> ${data.Website && data.Website !== "N/A" ? `<a href="${data.Website}" target="_blank">${data.Website}</a>` : 'No website available'}<br>
                     <strong>Hours:</strong>
-                    <ul>${data.Hours ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}
+                    <ul>
+                    ${data.Hours ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}
                     </ul>
                     ${directionsLink}<br>
                     <a href="#" class="report-link" data-name="${data.Name}" data-toggle="modal" data-target="#reportModal">Report Bad Information</a>
