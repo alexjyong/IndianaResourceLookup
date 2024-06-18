@@ -1,17 +1,25 @@
 from flask import Flask, request, jsonify, render_template
-from flask_basicauth import BasicAuth
 import requests
 import os
 import geopandas as gpd
 from shapely.geometry import Point
 import json
+from flask_httpauth import HTTPBasicAuth
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
+auth = HTTPBasicAuth()
 
-# Basic Auth configuration
-app.config['BASIC_AUTH_USERNAME'] = 'yourusername'
-app.config['BASIC_AUTH_PASSWORD'] = 'yourpassword'
-basic_auth = BasicAuth(app)
+# Define users and their passwords
+users = {
+    "admin": generate_password_hash("yourpassword")
+}
+
+# Verify passwords
+@auth.verify_password
+def verify_password(username, password):
+    if username in users and check_password_hash(users.get(username), password):
+        return username
 
 # Load township boundaries
 township_gdf = gpd.read_file('static/utilities/data/indiana_townships.geojson')
@@ -25,12 +33,12 @@ def get_township(latitude, longitude):
     return None, None
 
 @app.route('/')
-@basic_auth.required
+@auth.login_required
 def index():
     return render_template('index.html')
 
 @app.route('/geocode', methods=['GET'])
-@basic_auth.required
+@auth.login_required
 def geocode():
     address = request.args.get('address')
     api_key = os.getenv("GOOGLE_MAPS_API_KEY")
@@ -75,4 +83,4 @@ def get_trustee_info(county, township):
         })
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
