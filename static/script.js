@@ -171,7 +171,7 @@ function createPopupContent(data, type) {
         `<a href="https://www.google.com/maps/dir/?api=1&destination=${data.Latitude},${data.Longitude}" target="_blank">Get Directions</a>`;
 
     return `
-        <strong><em>Please note that not all locations are offices, please call before traveling to the location.</em></strong>
+        <strong><em>Please note that not all locations are offices, please call before traveling to the location.</em></strong><br>
         <strong>${data.Name} (${type})</strong><br>
         <strong>Address:</strong> ${data.Address}<br>
         <strong>Phone:</strong> <a href="tel:${data.Phone}">${data.Phone}</a><br>
