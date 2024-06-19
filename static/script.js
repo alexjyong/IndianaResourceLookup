@@ -177,9 +177,9 @@ function createPopupContent(data, type) {
         <strong>Phone:</strong> <a href="tel:${data.Phone}">${data.Phone}</a><br>
         <strong>Website:</strong> ${data.Website && data.Website !== "N/A" ? `<a href="${data.Website}" target="_blank">${data.Website}</a>` : 'No website available'}<br>
         <strong>Hours:</strong><br>
-        <ul>${data.Hours ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}</ul>
+        <ul>${data.Hours && data.Hours.length > 0 ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}</ul>
         ${directionsLink}<br>
-        <a href="#" class="report-link" data-name="${data.Name}" data-toggle="modal" data-target="#reportModal">Report Bad Information</a>
+        <a href="#" class="report-link" data-name="${data.Name}" data-toggle="modal" data-target="#reportModal">Report Issues</a>
     `;
 }
 
@@ -222,10 +222,9 @@ function createCard(data, type) {
                     <strong>Phone:</strong> <a href="tel:${data.Phone}">${data.Phone}</a><br>
                     <strong>Website:</strong> ${data.Website && data.Website !== "N/A" ? `<a href="${data.Website}" target="_blank">${data.Website}</a>` : 'No website available'}<br>
                     <strong>Hours:</strong>
-                    <ul>${data.Hours ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}
-                    </ul>
+                    <ul>${data.Hours && data.Hours.length > 0 ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}</ul>
                     ${directionsLink}<br>
-                    <a href="#" class="report-link" data-name="${data.Name}" data-toggle="modal" data-target="#reportModal">Report Bad Information</a>
+                    <a href="#" class="report-link" data-name="${data.Name}" data-toggle="modal" data-target="#reportModal">Report Issues</a>
                 </p>
             </div>
         </div>
