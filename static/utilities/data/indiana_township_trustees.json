@@ -2953,10 +2953,28 @@
     },
     {
         "County": "Wabash",
+        "Name": "Chester Township Trustee",
+        "Address": "11942 N 300 E, North Manchester, IN 46962",
+        "Phone": "12609822287",
+        "Website": "https://wabashcounty.in.gov/cgi.exe?PAGEID=0053",
+        "Latitude": "41.00073064261698",
+        "Longitude": "-85.74217013610932",
+        "Hours": [
+            "Monday: Closed",
+            "Tuesday: Closed",
+            "Wednesday: 5:30 PM - 8:30 PM",
+            "Thursday: Closed",
+            "Friday: Closed",
+            "Saturday: 9:00 AM - 12:00 PM",
+            "Sunday: Closed"
+        ]
+    },
+    {
+        "County": "Wabash",
         "Name": "Noble Township Trustee",
         "Address": "4181 S 150 W, Wabash, IN 46992, United States",
         "Phone": "(260) 563-6526",
-        "Website": "N/A",
+        "Website": "https://wabashcounty.in.gov/cgi.exe?PAGEID=0053",
         "Latitude": 40.7650777,
         "Longitude": -85.8189842,
         "Hours": [
@@ -2974,7 +2992,7 @@
         "Name": "Paw Paw Township Trustee",
         "Address": "6382 W 300 N, Wabash, IN 46992, United States",
         "Phone": "(765) 833-7888",
-        "Website": "N/A",
+        "Website": "https://wabashcounty.in.gov/cgi.exe?PAGEID=0053",
         "Latitude": 40.8678351,
         "Longitude": -85.91197629999999
     },
