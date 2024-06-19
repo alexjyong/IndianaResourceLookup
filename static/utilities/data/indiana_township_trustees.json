@@ -8966,7 +8966,7 @@
         "Name": "Addison Township Trustee",
         "Address": "210 Columbia Ave, Shelbyville, IN 46176, United States",
         "Phone": "(317) 398-6896",
-        "Website": "N/A",
+        "Website": "https://www.co.shelby.in.us/township-trustees/",
         "Latitude": 39.519627,
         "Longitude": -85.77442750000002,
         "Hours": [
@@ -8982,9 +8982,9 @@
     {
         "County": "Shelby",
         "Name": "Brandywine Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "P.O. Box 174 Fairland, IN 46126",
+        "Phone": "317-835-8304",
+        "Website": "https://www.co.shelby.in.us/township-trustees/",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -8992,9 +8992,9 @@
     {
         "County": "Shelby",
         "Name": "Hanover Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "P.O. Box 205 Morristown, IN 46161",
+        "Phone": "317-498-0362",
+        "Website": "https://www.co.shelby.in.us/township-trustees/",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -9002,21 +9002,21 @@
     {
         "County": "Shelby",
         "Name": "Hendricks Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
+        "Address": "3970 S. Sugar Creek Rd. Franklin, IN",
+        "Phone": "463-464-9948",
+        "Website": "https://www.co.shelby.in.us/township-trustees/",
+        "Latitude": "39.46535536958329",
+        "Longitude": "-85.94150394895986",
         "Hours": []
     },
     {
         "County": "Shelby",
         "Name": "Jackson Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
+        "Address": "6985 S 600 W Edinburgh, IN 46124",
+        "Phone": "317-729-5135",
+        "Website": "https://www.co.shelby.in.us/township-trustees/",
+        "Latitude": "39.42352330976567",
+        "Longitude": "-85.89459701457787",
         "Hours": []
     },
     {
@@ -9024,18 +9024,18 @@
         "Name": "Liberty Township Trustees Office",
         "Address": "7678 E 300 S, Waldron, IN 46182, United States",
         "Phone": "(765) 525-6771",
-        "Website": "N/A",
+        "Website": "https://www.co.shelby.in.us/township-trustees/",
         "Latitude": 39.484445,
         "Longitude": -85.6380609
     },
     {
         "County": "Shelby",
         "Name": "Marion Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
+        "Address": "81 E. Rafferty Rd Shelbyville, IN 46176",
+        "Phone": "317-398-2025",
+        "Website": "https://www.co.shelby.in.us/township-trustees/",
+        "Latitude": "39.559578343268306",
+        "Longitude": "-85.77264164986606",
         "Hours": []
     },
     {
