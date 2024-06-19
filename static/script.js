@@ -61,21 +61,25 @@ $(document).ready(function() {
                 .then(data => {
                     if (data.trustee) {
                         const trustee = data.trustee;
-                        const county = data.county;
-                        const township = data.township;
 
                         // Clear existing markers
                         markers.forEach(marker => map.removeLayer(marker));
                         markers = [];
 
                         // Add trustee marker
-                        const marker = L.marker([trustee.Latitude, trustee.Longitude], { icon: trusteeIcon }).addTo(map);
-                        marker.bindPopup(createPopupContent(trustee, 'Trustee'));
-                        markers.push(marker);
+                        if (trustee.Latitude && trustee.Longitude) {
+                            const marker = L.marker([trustee.Latitude, trustee.Longitude], { icon: trusteeIcon }).addTo(map);
+                            marker.bindPopup(createPopupContent(trustee, 'Trustee'));
+                            markers.push(marker);
 
-                        // Zoom to the trustee location and open the popup
-                        map.setView([trustee.Latitude, trustee.Longitude], 12);
-                        marker.openPopup();
+                            // Zoom to the trustee location and open the popup
+                            map.setView([trustee.Latitude, trustee.Longitude], 12);
+                            marker.openPopup();
+                        }
+                        else {
+                            alert("No office information for your trustee has been found. However, other data may be available below.");
+                        }
+                        
 
                         // Update results
                         resultsDiv.empty();
@@ -134,18 +138,24 @@ function updateMap(county, filter) {
     if (filter === 'all' || filter === 'trustee') {
         const trustees = trusteeData.filter(item => item.County === county);
         trustees.forEach(trustee => {
-            const marker = L.marker([trustee.Latitude, trustee.Longitude], { icon: trusteeIcon }).addTo(map);
-            marker.bindPopup(createPopupContent(trustee, 'Trustee'));
-            markers.push(marker);
+            if (trustee.Latitude && trustee.Longitude) { //only show markers that have a location. Otherwise, don't bother.
+                const marker = L.marker([trustee.Latitude, trustee.Longitude], { icon: trusteeIcon }).addTo(map);
+                marker.bindPopup(createPopupContent(trustee, 'Trustee'));
+                markers.push(marker);
+            }
+            
         });
     }
 
     if (filter === 'all' || filter === 'food_pantry') {
         const foodPantries = foodPantryData.filter(item => item.County === county);
         foodPantries.forEach(foodPantry => {
-            const marker = L.marker([foodPantry.Latitude, foodPantry.Longitude], { icon: foodPantryIcon }).addTo(map);
-            marker.bindPopup(createPopupContent(foodPantry, 'Food Pantry'));
-            markers.push(marker);
+            if (foodPantry.Latitude && foodPantry.Longitude){ //only show markers that have a location. Otherwise, don't bother.
+                const marker = L.marker([foodPantry.Latitude, foodPantry.Longitude], { icon: foodPantryIcon }).addTo(map);
+                marker.bindPopup(createPopupContent(foodPantry, 'Food Pantry'));
+                markers.push(marker);
+            }
+            
         });
     }
 
