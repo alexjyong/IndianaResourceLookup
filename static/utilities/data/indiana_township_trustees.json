@@ -2,11 +2,11 @@
     {
         "County": "Adams",
         "Name": "Blue Creek Township Trustee",
-        "Address": "Blue Creek Township, IN, USA",
-        "Phone": "",
-        "Website": "",
-        "Latitude": 40.7019188,
-        "Longitude": -84.83593950000001,
+        "Address": "2510 S 650 E, Monroe, IN 46772",
+        "Phone": "260-701-2875",
+        "Website": "https://www.co.adams.in.us/27/Government",
+        "Latitude": 40.710533642880286,
+        "Longitude": -84.81228452883613,
         "Hours": []
     },
     {
@@ -14,7 +14,7 @@
         "Name": "French Township Trustee",
         "Address": "French Township, IN, USA",
         "Phone": "",
-        "Website": "",
+        "Website": "https://www.co.adams.in.us/27/Government",
         "Latitude": 40.71103249999999,
         "Longitude": -85.0441304,
         "Hours": []
@@ -24,7 +24,7 @@
         "Name": "Hartford Township Trustee",
         "Address": "",
         "Phone": "",
-        "Website": "",
+        "Website": "https://www.co.adams.in.us/27/Government",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -34,7 +34,7 @@
         "Name": "Jefferson Township Trustee",
         "Address": "",
         "Phone": "",
-        "Website": "",
+        "Website": "https://www.co.adams.in.us/27/Government",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -42,11 +42,11 @@
     {
         "County": "Adams",
         "Name": "Kirkland Township Trustee",
-        "Address": "3155 N 600 W, Decatur, IN 46733, United States",
-        "Phone": "(260) 565-3468",
-        "Website": "",
-        "Latitude": 40.788868,
-        "Longitude": -85.0523501,
+        "Address": "2885 N 400 W, Decatur, IN 46733, United States",
+        "Phone": "260-615-4697",
+        "Website": "https://www.co.adams.in.us/27/Government",
+        "Latitude": 40.78552798030344,
+        "Longitude": -85.01425261995225,
         "Hours": []
     },
     {
