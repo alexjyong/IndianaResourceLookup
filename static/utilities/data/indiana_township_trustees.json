@@ -124,7 +124,7 @@
         "Name": "Aboite Township Trustee",
         "Address": "11321 Aboite Center Rd, Fort Wayne, IN 46814, United States",
         "Phone": "(260) 432-0970",
-        "Website": "N/A",
+        "Website": "https://www.aboitetwp.com/",
         "Latitude": 41.0446851,
         "Longitude": -85.2915038,
         "Hours": [
@@ -334,29 +334,20 @@
     {
         "County": "Allen",
         "Name": "Washington Township Trustee",
-        "Address": "1832 W Wallen Rd, Fort Wayne, IN 46818, United States",
-        "Phone": "(260) 449-3354",
-        "Website": "N/A",
-        "Latitude": 41.1618191,
-        "Longitude": -85.16763929999999,
+        "Address": "1832 West Wallen Road Fort Wayne, IN 46818",
+        "Phone": "260-449-3354",
+        "Website": "https://www.washingtontownshiptrustee.com/",
+        "Latitude": 41.161787150933556,
+        "Longitude": -85.16765157801761,
         "Hours": [
             "Monday: 8:00 AM - 12:00 PM",
             "Tuesday: Closed",
             "Wednesday: 8:00 AM - 12:00 PM",
-            "Thursday: 3:00 - 6:00 PM",
+            "Thursday: 3:00 PM - 6:00 PM",
             "Friday: 8:00 AM - 12:00 PM",
             "Saturday: Closed",
             "Sunday: Closed"
         ]
-    },
-    {
-        "County": "Allen",
-        "Name": "Washington Township trustee,wallen rd",
-        "Address": "E Wallen Rd, Fort Wayne, IN 46825, United States",
-        "Phone": "N/A",
-        "Website": "N/A",
-        "Latitude": 41.1623713,
-        "Longitude": -85.12173179999999
     },
     {
         "County": "Allen",
