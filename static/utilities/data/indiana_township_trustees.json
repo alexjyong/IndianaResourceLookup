@@ -177,62 +177,89 @@
         "County": "Allen",
         "Name": "Eel River Township Trustee",
         "Address": "",
-        "Phone": "",
+        "Phone": "614-636-0050",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
-        "Hours": []
+        "Hours": [
+        ]
     },
     {
         "County": "Allen",
         "Name": "Jackson Township Trustee",
         "Address": "",
-        "Phone": "",
+        "Phone": "260-632-4757",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
-        "Hours": []
+        "Hours": [
+            "Monday: By Appointment",
+            "Tuesday: By Appointment",
+            "Wednesday: By Appointment",
+            "Thursday: By Appointment",
+            "Friday: By Appointment",
+            "Saturday: By Appointment",
+            "Sunday: By Appointment"
+        ]
     },
     {
         "County": "Allen",
         "Name": "Jefferson Township Trustee",
         "Address": "",
-        "Phone": "",
+        "Phone": "260-385-6835",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
-        "Hours": []
+        "Hours": [
+            "Monday: By Appointment",
+            "Tuesday: By Appointment",
+            "Wednesday: By Appointment",
+            "Thursday: By Appointment",
+            "Friday: By Appointment",
+            "Saturday: By Appointment",
+            "Sunday: By Appointment"
+        ]
     },
     {
         "County": "Allen",
         "Name": "Lafayette Township Trustee",
         "Address": "",
-        "Phone": "",
+        "Phone": "260-409-6589",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
-        "Hours": []
+        "Hours": [
+            "Monday: 8:00 AM - 8:00 PM",
+            "Tuesday: 8:00 AM - 8:00 PM",
+            "Wednesday: 8:00 AM - 8:00 PM",
+            "Thursday: 8:00 AM - 8:00 PM",
+            "Friday: 8:00 AM - 8:00 PM",
+            "Saturday: Closed",
+            "Sunday: Closed"
+        ]
     },
     {
         "County": "Allen",
         "Name": "Lake Township Trustee",
         "Address": "",
-        "Phone": "",
+        "Phone": "260-409-6589",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
-        "Hours": []
+        "Hours": [
+        ]
     },
     {
         "County": "Allen",
         "Name": "Madison Township Trustee",
         "Address": "",
-        "Phone": "",
+        "Phone": "260-240-0354",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
-        "Hours": []
-    },
+        "Hours": [
+        ]
+    }
     {
         "County": "Allen",
         "Name": "Marion Township Trustee",
