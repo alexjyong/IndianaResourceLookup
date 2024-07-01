@@ -11258,8 +11258,8 @@
     {
         "County": "Whitley",
         "Name": "Cleveland Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "121 N State St, South Whitley, IN",
+        "Phone": "260-723-5475",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -11268,8 +11268,8 @@
     {
         "County": "Whitley",
         "Name": "Columbia Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "22 E Radio Rd, Columbia City, IN",
+        "Phone": "260-244-0045",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -11278,8 +11278,8 @@
     {
         "County": "Whitley",
         "Name": "Etna-Troy Township Trustee",
-        "Address": "Etna-Troy Township, IN, USA",
-        "Phone": "",
+        "Address": "6950 W 600 N, Larwill, IN 46764",
+        "Phone": "260-327-3508",
         "Website": "",
         "Latitude": 41.25651089999999,
         "Longitude": -85.58179109999999,
@@ -11288,8 +11288,8 @@
     {
         "County": "Whitley",
         "Name": "Jefferson Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "9885 S 500 E-92, Roanoke, Indiana",
+        "Phone": "260-229-2347",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -11298,8 +11298,8 @@
     {
         "County": "Whitley",
         "Name": "Richland Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "8307 W 250 N, Larwill, Indiana",
+        "Phone": "260-248-7989",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -11308,29 +11308,11 @@
     {
         "County": "Whitley",
         "Name": "Smith Township Trustee",
-        "Address": "3977 NW Carlin Ct, Churubusco, IN 46723, United States",
-        "Phone": "(260) 693-3266",
+        "Address": "2440 N Indiana St, Columbia City, IN",
+        "Phone": "260-609-3266",
         "Website": "N/A",
-        "Latitude": 41.2219646,
-        "Longitude": -85.319227
-    },
-    {
-        "County": "Whitley",
-        "Name": "South Whitley Town Clerk",
-        "Address": "118 E Front St, South Whitley, IN 46787, United States",
-        "Phone": "(260) 723-5312",
-        "Website": "N/A",
-        "Latitude": 41.0844724,
-        "Longitude": -85.62669199999999,
-        "Hours": [
-            "Monday: 7:30 AM - 4:00 PM",
-            "Tuesday: 7:30 AM - 4:00 PM",
-            "Wednesday: 7:30 AM - 4:00 PM",
-            "Thursday: 7:30 AM - 4:00 PM",
-            "Friday: 7:30 AM - 4:00 PM",
-            "Saturday: Closed",
-            "Sunday: Closed"
-        ]
+        "Latitude": "",
+        "Longitude": ""
     },
     {
         "County": "Whitley",
@@ -11345,8 +11327,8 @@
     {
         "County": "Whitley",
         "Name": "Union Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "6405 E Old Trail Rd, Columbia City, IN",
+        "Phone": "260-503-4862",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -11355,8 +11337,8 @@
     {
         "County": "Whitley",
         "Name": "Washington Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "7389 S 275 W, Columbia City, IN",
+        "Phone": "260-723-6985",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
