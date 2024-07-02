@@ -141,16 +141,16 @@
         "County": "Allen",
         "Name": "Adams Township Trustee",
         "Address": "1125 Hartzell St, New Haven, IN 46774, United States",
-        "Phone": "(260) 749-4162",
+        "Phone": "(260) 493-2590",
         "Website": "https://www.adamstownship.org/contact",
         "Latitude": 41.0711066,
         "Longitude": -85.0138928,
         "Hours": [
-            "Monday: 8:00 AM - 5:00 PM",
-            "Tuesday: 8:00 AM - 5:00 PM",
-            "Wednesday: 8:00 AM - 5:00 PM",
-            "Thursday: 8:00 AM - 5:00 PM",
-            "Friday: Closed",
+            "Monday: 8:00 AM - 4:00 PM",
+            "Tuesday: 8:00 AM - 4:00 PM",
+            "Wednesday: 8:00 AM - 4:00 PM",
+            "Thursday: 8:00 AM - 4:00 PM",
+            "Friday: 8:00 AM - 4:00 PM",
             "Saturday: Closed",
             "Sunday: Closed"
         ]
@@ -158,14 +158,14 @@
     {
         "County": "Allen",
         "Name": "Cedar Creek Township Trustee",
-        "Address": "Pony Express Run, Leo-Cedarville, IN 46765, United States",
+        "Address": "10523 Hosler Road, Leo, IN 46765, United States",
         "Phone": "(260) 627-5695",
         "Website": "",
-        "Latitude": 41.2155953,
-        "Longitude": -85.0195315,
+        "Latitude": "",
+        "Longitude": "",
         "Hours": [
             "Monday: Closed",
-            "Tuesday: 12:00 - 4:00 PM",
+            "Tuesday: 12:00 PM - 4:00 PM",
             "Wednesday: Closed",
             "Thursday: Closed",
             "Friday: Closed",
@@ -176,18 +176,17 @@
     {
         "County": "Allen",
         "Name": "Eel River Township Trustee",
-        "Address": "",
-        "Phone": "614-636-0050",
+        "Address": "12131 Carroll Creek Run, Fort Wayne IN 46818, United States",
+        "Phone": "765-418-5159",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
-        "Hours": [
-        ]
+        "Hours": []
     },
     {
         "County": "Allen",
         "Name": "Jackson Township Trustee",
-        "Address": "",
+        "Address": "618 North Brobst Road, Woodburn, IN 46797, United States",
         "Phone": "260-632-4757",
         "Website": "",
         "Latitude": "",
@@ -205,7 +204,7 @@
     {
         "County": "Allen",
         "Name": "Jefferson Township Trustee",
-        "Address": "",
+        "Address": "8030 Sampson Road, Monroeville, IN 46773, United States",
         "Phone": "260-385-6835",
         "Website": "",
         "Latitude": "",
@@ -223,7 +222,7 @@
     {
         "County": "Allen",
         "Name": "Lafayette Township Trustee",
-        "Address": "",
+        "Address": "16824 Prine Road, Yoder, IN 46798, United States",
         "Phone": "260-409-6589",
         "Website": "",
         "Latitude": "",
@@ -242,29 +241,27 @@
         "County": "Allen",
         "Name": "Lake Township Trustee",
         "Address": "",
-        "Phone": "260-409-6589",
+        "Phone": "260-450-4822",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
-        "Hours": [
-        ]
+        "Hours": []
     },
     {
         "County": "Allen",
         "Name": "Madison Township Trustee",
-        "Address": "",
-        "Phone": "260-240-0354",
+        "Address": "16003 Fackler Road, Monroeville, IN 46773, United States",
+        "Phone": "260-301-3132",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
-        "Hours": [
-        ]
-    }
+        "Hours": []
+    },
     {
         "County": "Allen",
         "Name": "Marion Township Trustee",
-        "Address": "16404 US Hwy 27, Decatur, IN 46733, United States",
-        "Phone": "(260) 639-3062",
+        "Address": "3800 Fillmore Street (POE), Fort Wayne, IN 46819, United States",
+        "Phone": "260-437-3094",
         "Website": "",
         "Latitude": 40.930809,
         "Longitude": -85.038518,
@@ -273,12 +270,20 @@
     {
         "County": "Allen",
         "Name": "Maumee Township Trustee",
-        "Address": "5311 IN-101, Woodburn, IN 46797, United States",
+        "Address": "22735 Main Street, P.O. Box 142, Woodburn, IN 46797, United States",
         "Phone": "(260) 632-9977",
         "Website": "",
         "Latitude": 41.1255496,
         "Longitude": -84.8488217,
-        "Hours": []
+        "Hours": [
+            "Monday: 9:00 AM - 12:00 PM",
+            "Tuesday: Closed",
+            "Wednesday: 1:00 PM - 4:00 PM",
+            "Thursday: Closed",
+            "Friday: Closed",
+            "Saturday: Closed",
+            "Sunday: Closed"
+        ]
     },
     {
         "County": "Allen",
@@ -293,8 +298,8 @@
     {
         "County": "Allen",
         "Name": "Monroe Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "PO Box 137, Monroeville, IN 46773, United States",
+        "Phone": "260-623-3717",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -303,8 +308,8 @@
     {
         "County": "Allen",
         "Name": "Perry Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "15412 Lima Road, Huntertown, IN 46748, United States",
+        "Phone": "260-449-3748",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -317,13 +322,22 @@
         "Phone": "(260) 639-6251",
         "Website": "N/A",
         "Latitude": 40.9600802,
-        "Longitude": -85.1389469
+        "Longitude": -85.1389469,
+        "Hours": [
+            "Monday: 8:00 AM - 5:00 PM",
+            "Tuesday: 8:00 AM - 5:00 PM",
+            "Wednesday: 8:00 AM - 5:00 PM",
+            "Thursday: 8:00 AM - 5:00 PM",
+            "Friday: 8:00 AM - 5:00 PM",
+            "Saturday: Closed",
+            "Sunday: Closed"
+        ]
     },
     {
         "County": "Allen",
         "Name": "Scipio Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "P.O. Box 163, Harlan, IN 46743, United States",
+        "Phone": "260-385-4337",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -332,8 +346,8 @@
     {
         "County": "Allen",
         "Name": "Springfield Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "18631 SR 37, Harlan, IN 46747, United States",
+        "Phone": "260-413-2136",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -344,19 +358,18 @@
         "Name": "St Joseph Township Trustee",
         "Address": "6033 Maplecrest Rd, Fort Wayne, IN 46835, United States",
         "Phone": "(260) 485-5993",
-        "Website": "N/A",
-        "Latitude": 41.1360615,
-        "Longitude": -85.0627793
-    },
-    {
-        "County": "Allen",
-        "Name": "St. Joseph Township Trustee",
-        "Address": "6033 Maplecrest Rd, Fort Wayne, IN 46835, United States",
-        "Phone": "(260) 485-5993",
         "Website": "https://www.stjosephtwp.com/",
         "Latitude": 41.1360615,
         "Longitude": -85.0627793,
-        "Hours": []
+        "Hours": [
+            "Monday: 8:00 AM - 1:00 PM",
+            "Tuesday: Closed",
+            "Wednesday: 8:00 AM - 1:00 PM",
+            "Thursday: Closed",
+            "Friday: 8:00 AM - 12:00 PM",
+            "Saturday: Closed",
+            "Sunday: Closed"
+        ]
     },
     {
         "County": "Allen",
@@ -9061,11 +9074,11 @@
     {
         "County": "Shelby",
         "Name": "Noble Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
+        "Address": "215 N Pierce St St. Paul, IN 47272",
+        "Phone": "765-525-7160",
+        "Website": "https://www.co.shelby.in.us/township-trustees/",
+        "Latitude": "39.430781988160504",
+        "Longitude": "-85.63116250379487",
         "Hours": []
     },
     {
@@ -9073,25 +9086,16 @@
         "Name": "Shelby Township Trustee",
         "Address": "4730 S 250 E, Shelbyville, IN 46176, United States",
         "Phone": "(317) 392-8968",
-        "Website": "N/A",
+        "Website": "https://www.co.shelby.in.us/township-trustees/",
         "Latitude": 39.45714299999999,
         "Longitude": -85.7315439
-    },
-    {
-        "County": "Shelby",
-        "Name": "Shelby Township Trustee",
-        "Address": "2572 E 500 S, Waldron, IN 46182, United States",
-        "Phone": "(765) 525-6834",
-        "Website": "N/A",
-        "Latitude": 39.455189,
-        "Longitude": -85.72891299999999
     },
     {
         "County": "Shelby",
         "Name": "Sugar Creek Township Trustee",
         "Address": "1900 N Academy Rd, Needham, IN 46162, United States",
         "Phone": "(317) 835-2389",
-        "Website": "http://www.co.shelby.in.us/",
+        "Website": "https://www.co.shelby.in.us/township-trustees/",
         "Latitude": 39.5508461,
         "Longitude": -85.92815879999999,
         "Hours": []
@@ -9099,37 +9103,37 @@
     {
         "County": "Shelby",
         "Name": "Union Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
+        "Address": "3179 N 775 E, Shelbyville, IN 46176",
+        "Phone": "765-544-2540",
+        "Website": "https://www.co.shelby.in.us/township-trustees/",
+        "Latitude": "39.57180091753761",
+        "Longitude": "-85.637277055431",
         "Hours": []
     },
     {
         "County": "Shelby",
         "Name": "Van Buren Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
+        "Address": "2029 E. 1000 N. Morristown, IN 46161",
+        "Phone": "765-763-6015",
+        "Website": "https://www.co.shelby.in.us/township-trustees/",
+        "Latitude": "39.66905887908579",
+        "Longitude": "-85.74407607332753",
         "Hours": []
     },
     {
         "County": "Shelby",
         "Name": "Washington Township Trustee",
-        "Address": "8025 S 250 W, Shelbyville, IN 46176, United States",
-        "Phone": "(812) 587-5607",
-        "Website": "N/A",
-        "Latitude": 39.4080208,
-        "Longitude": -85.8269936
+        "Address": "P.O. Box 1 Flat Rock, IN 47234",
+        "Phone": "812-603-0673",
+        "Website": "https://www.co.shelby.in.us/township-trustees/",
+        "Latitude": "",
+        "Longitude": ""
     },
     {
         "County": "Spencer",
         "Name": "Carter Township Trustee",
         "Address": "",
-        "Phone": "",
+        "Phone": "812-937-1235",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -9139,7 +9143,7 @@
         "County": "Spencer",
         "Name": "Clay Township Trustee",
         "Address": "",
-        "Phone": "",
+        "Phone": "812-544-2762",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -9149,7 +9153,7 @@
         "County": "Spencer",
         "Name": "Grass Township Trustee",
         "Address": "",
-        "Phone": "",
+        "Phone": "812-483-5867",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -9159,7 +9163,7 @@
         "County": "Spencer",
         "Name": "Hammond Township Trustee",
         "Address": "",
-        "Phone": "",
+        "Phone": "812-660-0373",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -9169,7 +9173,7 @@
         "County": "Spencer",
         "Name": "Harrison Township Trustee",
         "Address": "",
-        "Phone": "",
+        "Phone": "812-357-2105",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -9179,7 +9183,7 @@
         "County": "Spencer",
         "Name": "Huff Township Trustee Office",
         "Address": "10601 N County Rd 1200 E, Evanston, IN 47531, United States",
-        "Phone": "(812) 529-8610",
+        "Phone": "812-608-2912",
         "Website": "N/A",
         "Latitude": 38.0397155,
         "Longitude": -86.8299636
@@ -9188,7 +9192,7 @@
         "County": "Spencer",
         "Name": "Jackson Township Trustee",
         "Address": "",
-        "Phone": "",
+        "Phone": "812-362-7781",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -9198,7 +9202,7 @@
         "County": "Spencer",
         "Name": "Luce Township Trustee",
         "Address": "",
-        "Phone": "",
+        "Phone": "812-359-4910",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -9208,7 +9212,7 @@
         "County": "Spencer",
         "Name": "Ohio Township Trustee",
         "Address": "",
-        "Phone": "",
+        "Phone": "812-649-2735",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -10598,7 +10602,7 @@
         "Name": "Anderson Township Trustee",
         "Address": "6200 S Yankeetown Rd, Boonville, IN 47630, United States",
         "Phone": "(812) 853-5541",
-        "Website": "N/A",
+        "Website": "https://www.warrickcounty.gov/townships",
         "Latitude": 37.943609,
         "Longitude": -87.28942099999999,
         "Hours": [
@@ -10616,7 +10620,7 @@
         "Name": "Boon Township Trustee",
         "Address": "107 W Locust St # 115, Boonville, IN 47601, United States",
         "Phone": "(812) 897-3540",
-        "Website": "N/A",
+        "Website": "https://www.warrickcounty.gov/townships",
         "Latitude": 38.0494773,
         "Longitude": -87.2747017,
         "Hours": [
@@ -10634,7 +10638,7 @@
         "Name": "Campbell Township Trustee",
         "Address": "",
         "Phone": "",
-        "Website": "",
+        "Website": "https://www.warrickcounty.gov/townships",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -10643,10 +10647,10 @@
         "County": "Warrick",
         "Name": "Greer Township Trustee",
         "Address": "Greer Township, IN, USA",
-        "Phone": "",
-        "Website": "",
-        "Latitude": 38.1720998,
-        "Longitude": -87.4108352,
+        "Phone": "812-761-3608",
+        "Website": "https://www.warrickcounty.gov/townships",
+        "Latitude": "",
+        "Longitude": "",
         "Hours": []
     },
     {
@@ -10654,7 +10658,7 @@
         "Name": "Hart Township Trustee",
         "Address": "",
         "Phone": "",
-        "Website": "",
+        "Website": "https://www.warrickcounty.gov/townships",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -10663,8 +10667,8 @@
         "County": "Warrick",
         "Name": "Lane Township Trustee",
         "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Phone": "812-589-4881",
+        "Website": "https://www.warrickcounty.gov/townships",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -10674,7 +10678,7 @@
         "Name": "Ohio Township Trustee",
         "Address": "3433 Libbert Rd, Newburgh, IN 47630, United States",
         "Phone": "(812) 853-8835",
-        "Website": "N/A",
+        "Website": "http://ohiotownship-in.com/",
         "Latitude": 37.9848909,
         "Longitude": -87.4145704,
         "Hours": [
@@ -10691,8 +10695,8 @@
         "County": "Warrick",
         "Name": "Owen Township Trustee",
         "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Phone": "812-567-4718",
+        "Website": "https://www.warrickcounty.gov/townships",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -10701,8 +10705,8 @@
         "County": "Warrick",
         "Name": "Pigeon Township Trustee",
         "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Phone": "812-536-3299",
+        "Website": "https://www.warrickcounty.gov/townships",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -10711,8 +10715,8 @@
         "County": "Warrick",
         "Name": "Skelton Township Trustee",
         "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Phone": "812-897-3787",
+        "Website": "https://www.warrickcounty.gov/townships",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
