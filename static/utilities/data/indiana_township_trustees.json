@@ -442,15 +442,15 @@
         "Name": "Columbus Township Trustee - Ben Jackson, Trustee",
         "Address": "1333 Washington St, Columbus, IN 47201, United States",
         "Phone": "(812) 372-8249",
-        "Website": "N/A",
+        "Website": "https://www.facebook.com/people/Columbus-Township-Trustee/100064493360741/",
         "Latitude": 39.211882,
         "Longitude": -85.9211024,
         "Hours": [
-            "Monday: 8:30 AM - 12:00 PM, 1:00 - 4:00 PM",
-            "Tuesday: 8:30 AM - 12:00 PM, 1:00 - 4:00 PM",
-            "Wednesday: 8:30 AM - 12:00 PM, 1:00 - 4:00 PM",
-            "Thursday: 8:30 AM - 12:00 PM, 1:00 - 4:00 PM",
-            "Friday: 8:30 AM - 12:00 PM, 1:00 - 4:00 PM",
+            "Monday: 8:30 AM - 12:00 PM, 1:00 - 4:30 PM",
+            "Tuesday: 8:30 AM - 12:00 PM, 1:00 - 4:30 PM",
+            "Wednesday: 8:30 AM - 12:00 PM, 1:00 - 4:30 PM",
+            "Thursday: 8:30 AM - 12:00 PM, 1:00 - 4:30 PM",
+            "Friday: 8:30 AM - 12:00 PM, 1:00 - 4:30 PM",
             "Saturday: Closed",
             "Sunday: Closed"
         ]
@@ -458,22 +458,22 @@
     {
         "County": "Bartholomew",
         "Name": "Flat Rock Township Trustee",
-        "Address": "Flat Rock Township, IN, USA",
-        "Phone": "",
-        "Website": "",
+        "Address": "7850 Depot Street, Columbus, IN 47203",
+        "Phone": "(812) 344-8896",
+        "Website": "https://sicilindiana.org/places/flat-rock-township-bartholomew-county/#post_content",
         "Latitude": 39.3083247,
         "Longitude": -85.8281458,
-        "Hours": []
+        "Hours": ["Call for appointment"]
     },
     {
         "County": "Bartholomew",
         "Name": "German Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "9428 Main Street, Taylorsville, IN 47280",
+        "Phone": "(812) 526-5505",
+        "Website": "https://sicilindiana.org/places/german-township-bartholomew-county/",
         "Latitude": "",
         "Longitude": "",
-        "Hours": []
+        "Hours": ["Call for appointments"]
     },
     {
         "County": "Bartholomew",
@@ -486,13 +486,13 @@
     },
     {
         "County": "Bartholomew",
-        "Name": "Haw Creek Township Trustee",
+        "Name": "HawCreek Township Trustee",
         "Address": "313 Washington St, Hope, IN 47246, United States",
         "Phone": "(812) 546-5947",
         "Website": "",
         "Latitude": 39.3028448,
         "Longitude": -85.7711255,
-        "Hours": []
+        "Hours": ["Tues 5pm To 6:30pm", "Others by Appointment"]
     },
     {
         "County": "Bartholomew",
