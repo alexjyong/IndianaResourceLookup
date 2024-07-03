@@ -3519,12 +3519,12 @@
         "County": "Hamilton",
         "Name": "Adams Township Trustee",
         "Address": "201 S Main St, Sheridan, IN 46069, United States",
-        "Phone": "(317) 758-1029",
-        "Website": "N/A",
+        "Phone": "(317) 758-1029, After hours emergency 317-773-1282",
+        "Website": "https://www.adamstownship.net/",
         "Latitude": 40.1369031,
         "Longitude": -86.2204404,
         "Hours": [
-            "Monday: 8:30 AM - 4:30 PM",
+            "Monday: 8:30 AM - 4:00 PM",
             "Tuesday: 8:30 AM - 4:00 PM",
             "Wednesday: 8:30 AM - 4:00 PM",
             "Thursday: 8:30 AM - 4:00 PM",
@@ -3538,7 +3538,7 @@
         "Name": "Clay Township Trustee",
         "Address": "10701 N College Ave B, Nora, IN 46280, United States",
         "Phone": "(317) 846-2773",
-        "Website": "N/A",
+        "Website": "https://claytwp.org/",
         "Latitude": 39.9435312,
         "Longitude": -86.1454807,
         "Hours": [
@@ -3556,7 +3556,7 @@
         "Name": "Delaware Township Trustee",
         "Address": "9090 E 131st St, Fishers, IN 46038, United States",
         "Phone": "(317) 842-8595",
-        "Website": "N/A",
+        "Website": "https://delawaretownship.net/",
         "Latitude": 39.9790784,
         "Longitude": -86.0094067,
         "Hours": [
@@ -3566,7 +3566,8 @@
             "Thursday: 8:00 AM - 3:00 PM",
             "Friday: 8:00 AM - 3:00 PM",
             "Saturday: Closed",
-            "Sunday: Closed"
+            "Sunday: Closed",
+            "Food Pantry Hours: Mon. - Tues.,Thurs. - Fri. 9am-2pm"
         ]
     },
     {
@@ -3574,16 +3575,20 @@
         "Name": "Fall Creek Township Office",
         "Address": "11595 Brooks School Rd, Fishers, IN 46037, United States",
         "Phone": "(317) 841-3180",
-        "Website": "N/A",
+        "Website": "https://fallcreektwp.com/",
         "Latitude": 39.9574444,
-        "Longitude": -85.94248170000002
+        "Longitude": -85.94248170000002,
+        "Hours":[
+            "Office Hours: Mon - Fri 9am - 4pm",
+            "Pantry Hours: Tue - Thur 10am - 2pm"
+        ]
     },
     {
         "County": "Hamilton",
         "Name": "Jackson Township Trustee",
         "Address": "506 W Main St, Arcadia, IN 46030, United States",
         "Phone": "(317) 984-3826",
-        "Website": "N/A",
+        "Website": "https://www.jacksontownshiptrustee.com/",
         "Latitude": 40.17644,
         "Longitude": -86.02817499999999,
         "Hours": [
@@ -3654,11 +3659,11 @@
         "County": "Hamilton",
         "Name": "White River Township Trustee",
         "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Phone": "(317) 385-6531",
+        "Website": "https://whiterivertwp.org/",
         "Latitude": "",
         "Longitude": "",
-        "Hours": []
+        "Hours": ["Hours by appointment"]
     },
     {
         "County": "Hancock",
@@ -4600,8 +4605,8 @@
         "Address": "P.O. Box 213 DeMotte, IN 46310",
         "Phone": "219-987-3680 (Office) / 219-746-2322 (Cell)",
         "Website": "https://www.jaspercountyin.gov/department/index.php?structureid=58",
-        "Latitude": "",
-        "Longitude": "",
+        "Latitude": 41.19422446433362,
+        "Longitude": -87.19844020755136,
         "Hours": []
     },
     {
@@ -4610,8 +4615,8 @@
         "Address": "1060 W Clark Street Rensselaer, IN 47978",
         "Phone": "219-866-7740 (Office)",
         "Website": "https://www.jaspercountyin.gov/department/index.php?structureid=58",
-        "Latitude": "",
-        "Longitude": "",
+        "Latitude": 40.94137719428051,
+        "Longitude": -87.16781665215107,
         "Hours": []
     },
     {
@@ -4620,8 +4625,8 @@
         "Address": "141 E 900 S Rensselaer, IN 47978",
         "Phone": "219-866-5397 (Home)",
         "Website": "https://www.jaspercountyin.gov/department/index.php?structureid=58",
-        "Latitude": "",
-        "Longitude": "",
+        "Latitude": 40.88067220059851,
+        "Longitude": -87.0388359935526,
         "Hours": []
     },
     {
