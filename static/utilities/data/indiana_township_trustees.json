@@ -430,9 +430,9 @@
     {
         "County": "Bartholomew",
         "Name": "Clifty Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "16747 East Huffer Road, Hope, IN, 47246",
+        "Phone": "812-546-5587",
+        "Website": "https://www.unitedwehelp.org/agencyname/clifty-township-trustee",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -568,8 +568,8 @@
         "Address": "Gilboa Township, IN, USA",
         "Phone": "",
         "Website": "",
-        "Latitude": 40.7013721,
-        "Longitude": -87.1622344,
+        "Latitude": "",
+        "Longitude": "",
         "Hours": []
     },
     {
@@ -657,16 +657,16 @@
         "Name": "Harrison Township Trustee",
         "Address": "118 S Main St, Montpelier, IN 47359, United States",
         "Phone": "(765) 728-5881",
-        "Website": "N/A",
+        "Website": "https://www.blackfordcounty.com/blackford-townships",
         "Latitude": 40.5547643,
         "Longitude": -85.2776935
     },
     {
         "County": "Blackford",
         "Name": "Jackson Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "7479 E 200 S, Hartford City, Indiana",
+        "Phone": "765-730-8686",
+        "Website": "https://www.blackfordcounty.com/blackford-townships",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -674,38 +674,35 @@
     {
         "County": "Blackford",
         "Name": "Licking Township Trustee",
-        "Address": "118 N Jefferson St, Hartford City, IN 47348, United States",
-        "Phone": "(765) 348-0920",
-        "Website": "N/A",
-        "Latitude": 40.4519391,
-        "Longitude": -85.3671844,
+        "Address": "118 North Jefferson Street, Hartford City, IN 47348",
+        "Phone": "765-348-0920",
+        "Website": "https://www.blackfordcounty.com/blackford-townships",
+        "Latitude": "40.45193655805959",
+        "Longitude": "-85.36718482422712",
         "Hours": [
-            "Monday: 8:30 - 11:00 AM",
-            "Tuesday: 8:30 - 11:00 AM",
-            "Wednesday: Closed",
-            "Thursday: 8:30 - 11:00 AM",
-            "Friday: Closed",
-            "Saturday: Closed",
-            "Sunday: Closed"
+            "Monday: 9 am - 11:30 am",
+            "Tuesday: 9 am - 11:30 am",
+            "Thursday: 9 am - 11:30 am"
         ]
     },
     {
         "County": "Blackford",
         "Name": "Washington Township Trustee",
-        "Address": "5424 N 100 W, Hartford City, IN 47348, United States",
-        "Phone": "(765) 348-8976",
-        "Website": "N/A",
-        "Latitude": 40.5292914,
-        "Longitude": -85.3899115
+        "Address": "2640 W 600 N, Hartford City",
+        "Phone": "765-499-2706",
+        "Website": "https://www.blackfordcounty.com/blackford-townships",
+        "Latitude": "",
+        "Longitude": "",
+        "Hours": []
     },
     {
         "County": "Boone",
         "Name": "Center Township Trustee",
-        "Address": "320 N East St, Lebanon, IN 46052, United States",
+        "Address": "1122 N Lebanon St E, Lebanon, IN 46052, United States",
         "Phone": "(765) 482-1550",
-        "Website": "N/A",
-        "Latitude": 40.0499348,
-        "Longitude": -86.46715069999999,
+        "Website": "https://www.centertwpboone.com/",
+        "Latitude": 40.05655016140791,
+        "Longitude": -86.47111599921953,
         "Hours": [
             "Monday: 8:30 AM - 4:00 PM",
             "Tuesday: 8:30 AM - 4:00 PM",
@@ -719,18 +716,8 @@
     {
         "County": "Boone",
         "Name": "Clinton Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
-        "Hours": []
-    },
-    {
-        "County": "Boone",
-        "Name": "Eagle Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "3445 E 425 N Lebanon, IN 46052",
+        "Phone": "(765) 577-0146",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -739,8 +726,8 @@
     {
         "County": "Boone",
         "Name": "Harrison Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "5170 S State Road 39 Lebanon, IN 46052",
+        "Phone": "(317) 440-5947",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -749,8 +736,8 @@
     {
         "County": "Boone",
         "Name": "Jackson Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "6089 W 300 S Jamestown, IN 46147",
+        "Phone": "(765) 676-5793",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -759,8 +746,8 @@
     {
         "County": "Boone",
         "Name": "Jefferson Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "8600 W 100 S Jamestown, IN 46147",
+        "Phone": "(317) 374-2072",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -769,8 +756,8 @@
     {
         "County": "Boone",
         "Name": "Marion Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "5289 N 900 E Sheridan, IN 46069",
+        "Phone": "(317) 869-5526",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -809,8 +796,8 @@
     {
         "County": "Boone",
         "Name": "Washington Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "1585 W 800 N Lebanon, IN 46052",
+        "Phone": "(765) 978-0674",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -819,28 +806,28 @@
     {
         "County": "Boone",
         "Name": "Worth Township Trustee",
-        "Address": "2965 575 E, Whitestown, IN 46075, United States",
+        "Address": "8 South Main St. Suite 102 Whitestown, IN 46075-0066",
         "Phone": "(317) 769-3560",
         "Website": "N/A",
-        "Latitude": 39.99725970000001,
-        "Longitude": -86.360073
+        "Latitude": "",
+        "Longitude": ""
     },
     {
         "County": "Brown",
         "Name": "Hamblen Township Trustee",
-        "Address": "Hamblen Township, IN, USA",
-        "Phone": "",
-        "Website": "",
-        "Latitude": 39.2981456,
-        "Longitude": -86.1344697,
+        "Address": "8120 Cordry Drive, Nineveh, IN 46164",
+        "Phone": "(317) 560-9275",
+        "Website": "https://www.townofnashville.org/local-links",
+        "Latitude": "",
+        "Longitude": "",
         "Hours": []
     },
     {
         "County": "Brown",
         "Name": "Jackson Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "2468 State Road 45, Nashville, IN 47448",
+        "Phone": "(812) 320-4564",
+        "Website": "https://www.townofnashville.org/local-links",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -848,9 +835,9 @@
     {
         "County": "Brown",
         "Name": "Van Buren Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "Southern Brown Fire Dept., 4040 SR 135 South, Nashville, IN 47448",
+        "Phone": "(812) 371-4375",
+        "Website": "https://www.townofnashville.org/local-links",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -858,12 +845,12 @@
     {
         "County": "Brown",
         "Name": "Washington Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "231 E. Main Street, Nashville, IN 47448",
+        "Phone": "(812) 720-1439",
+        "Website": "https://www.townofnashville.org/local-links",
         "Latitude": "",
         "Longitude": "",
-        "Hours": []
+        "Hours": ["Office Hours: Monday, Tuesday, Thursday and Friday 9am-10am"]
     },
     {
         "County": "Carroll",
@@ -1183,7 +1170,7 @@
     },
     {
         "County": "Clark",
-        "Name": "Jeffersonville Trustee’s Office",
+        "Name": "Jeffersonville Trustee's Office",
         "Address": "632 E Court Ave, Jeffersonville, IN 47130, United States",
         "Phone": "(812) 285-6240",
         "Website": "N/A",
