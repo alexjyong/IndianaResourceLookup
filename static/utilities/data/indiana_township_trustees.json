@@ -5158,29 +5158,30 @@
     {
         "County": "Knox",
         "Name": "Busseron Township Trustee",
-        "Address": "Busseron Township, IN, USA",
-        "Phone": "",
-        "Website": "",
-        "Latitude": 38.8561884,
-        "Longitude": -87.48020679999999,
+        "Address": "8451 N. Pierce Rd Bruceville, Indiana 47516",
+        "Phone": "812-881-5129",
+        "Website": "https://knoxcounty.in.gov/busseron-township",
+        "Latitude": "",
+        "Longitude": "",
         "Hours": []
     },
     {
         "County": "Knox",
         "Name": "Decker Township Trustee",
-        "Address": "11724 Cattle Barn Rd, Decker, IN 47524, United States",
+        "Address": "3703 W. Decker Chapel Road  Decker Indiana 47524",
         "Phone": "(812) 769-9321",
-        "Website": "",
-        "Latitude": 38.5073946,
-        "Longitude": -87.5875982,
+        "Website": "https://knoxcounty.in.gov/decker-township",
+        "Email": "jbnewton@live.com",
+        "Latitude": "",
+        "Longitude": "",
         "Hours": []
     },
     {
         "County": "Knox",
         "Name": "Harrison Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "10359 E. Boyd Like Rd.  Monroe City Indiana 47557",
+        "Phone": "812-887-2764",
+        "Website": "https://knoxcounty.in.gov/harrison-township",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -5188,9 +5189,9 @@
     {
         "County": "Knox",
         "Name": "Johnson Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "441 W. Fireman Rd Vincennes Indiana 47591",
+        "Phone": "812-881-7582",
+        "Website": "https://knoxcounty.in.gov/johnson-township",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -5198,9 +5199,9 @@
     {
         "County": "Knox",
         "Name": "Palmyra Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "1982 N. Broullette Rd Vincennes Indiana 47591",
+        "Phone": "812-881-8347",
+        "Website": "https://knoxcounty.in.gov/palmyra-township",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -5208,9 +5209,9 @@
     {
         "County": "Knox",
         "Name": "Steen Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "1238 S. Enley Road  Wheatland Indiana 47597",
+        "Phone": "812-831-3333",
+        "Website": "https://knoxcounty.in.gov/steen-township",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -5218,18 +5219,18 @@
     {
         "County": "Knox",
         "Name": "Vigo Township Trustee",
-        "Address": "121 S Main St, Bicknell, IN 47512, United States",
+        "Address": "119 E 2nd PO Box 141 Bicknell, IN 47512",
         "Phone": "(812) 735-3955",
-        "Website": "N/A",
-        "Latitude": 38.7719833,
-        "Longitude": -87.30589610000001
+        "Website": "https://knoxcounty.in.gov/vigo-township",
+        "Latitude": 38.77385363171712,
+        "Longitude": -87.30672187605285
     },
     {
         "County": "Knox",
         "Name": "Vincennes Township Trustee",
         "Address": "505 N 7th St, Vincennes, IN 47591, United States",
-        "Phone": "(812) 882-8703",
-        "Website": "N/A",
+        "Phone": "(812) 882-8703 812-887-0782 (Cell)",
+        "Website": "https://knoxcounty.in.gov/vincennes-township",
         "Latitude": 38.6786907,
         "Longitude": -87.5240953,
         "Hours": [
@@ -5245,9 +5246,9 @@
     {
         "County": "Knox",
         "Name": "Washington Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "6700 N Davis Rd  Bruceville Indiana 47516",
+        "Phone": "812-324-2300",
+        "Website": "https://knoxcounty.in.gov/washington-township",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -5255,9 +5256,9 @@
     {
         "County": "Knox",
         "Name": "Widner Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "PO Box 325  Freelandville Indiana 47535",
+        "Phone": "812-328-2396",
+        "Website": "https://knoxcounty.in.gov/widner-township",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
