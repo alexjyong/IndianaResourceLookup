@@ -6611,7 +6611,7 @@
         "Name": "Allen Township Trustee",
         "Address": "Allen Township, IN, USA",
         "Phone": "",
-        "Website": "",
+        "Website": "https://www.miamicountyin.gov/456/Township-Trustee-Contact-Information",
         "Latitude": 40.9539433,
         "Longitude": -86.1141045,
         "Hours": []
@@ -6621,7 +6621,7 @@
         "Name": "Butler Township Trustee",
         "Address": "",
         "Phone": "",
-        "Website": "",
+        "Website": "https://www.miamicountyin.gov/456/Township-Trustee-Contact-Information",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -6631,7 +6631,7 @@
         "Name": "Clay Township Trustee",
         "Address": "",
         "Phone": "",
-        "Website": "",
+        "Website": "https://www.miamicountyin.gov/456/Township-Trustee-Contact-Information",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -6641,7 +6641,7 @@
         "Name": "Deer Creek Township Trustee",
         "Address": "",
         "Phone": "",
-        "Website": "",
+        "Website": "https://www.miamicountyin.gov/456/Township-Trustee-Contact-Information",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -6651,7 +6651,7 @@
         "Name": "Erie Township Trustee",
         "Address": "",
         "Phone": "",
-        "Website": "",
+        "Website": "https://www.miamicountyin.gov/456/Township-Trustee-Contact-Information",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -6661,7 +6661,7 @@
         "Name": "Harrison Township Trustee",
         "Address": "",
         "Phone": "",
-        "Website": "",
+        "Website": "https://www.miamicountyin.gov/456/Township-Trustee-Contact-Information",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -6671,7 +6671,7 @@
         "Name": "Jackson Township Trustee",
         "Address": "",
         "Phone": "",
-        "Website": "",
+        "Website": "https://www.miamicountyin.gov/456/Township-Trustee-Contact-Information",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -6681,7 +6681,7 @@
         "Name": "Jefferson Township Trustee",
         "Address": "",
         "Phone": "",
-        "Website": "",
+        "Website": "https://www.miamicountyin.gov/456/Township-Trustee-Contact-Information",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -6691,7 +6691,7 @@
         "Name": "Perry Township Trustee",
         "Address": "",
         "Phone": "",
-        "Website": "",
+        "Website": "https://www.miamicountyin.gov/456/Township-Trustee-Contact-Information",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -6701,7 +6701,7 @@
         "Name": "Peru Township Trustee",
         "Address": "127 E Washington Ave, Peru, IN 46970, United States",
         "Phone": "(765) 473-5835",
-        "Website": "N/A",
+        "Website": "https://www.miamicountyin.gov/456/Township-Trustee-Contact-Information",
         "Latitude": 40.7637002,
         "Longitude": -86.0696269
     },
@@ -6710,7 +6710,7 @@
         "Name": "Pipe Creek Township Trustee",
         "Address": "",
         "Phone": "",
-        "Website": "",
+        "Website": "https://www.miamicountyin.gov/456/Township-Trustee-Contact-Information",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -6720,7 +6720,7 @@
         "Name": "Richland Township Trustee",
         "Address": "",
         "Phone": "",
-        "Website": "",
+        "Website": "https://www.miamicountyin.gov/456/Township-Trustee-Contact-Information",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -6730,7 +6730,7 @@
         "Name": "Union Township Trustee",
         "Address": "",
         "Phone": "",
-        "Website": "",
+        "Website": "https://www.miamicountyin.gov/456/Township-Trustee-Contact-Information",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -6740,19 +6740,19 @@
         "Name": "Washington Township Trustee Office",
         "Address": "36 German St, Peru, IN 46970, United States",
         "Phone": "(765) 472-0170",
-        "Website": "N/A",
+        "Website": "https://www.miamicountyin.gov/456/Township-Trustee-Contact-Information",
         "Latitude": 40.74527519999999,
         "Longitude": -86.05904369999999
     },
     {
         "County": "Monroe",
         "Name": "Bean Blossom Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
-        "Hours": []
+        "Address": "7030 N. Mt. Tabor Rd Ellettsville, In 47429",
+        "Phone": "(812) 935-7174",
+        "Website": "https://www.co.monroe.in.us/department/?structureid=157",
+        "Latitude": 39.25311657317077,
+        "Longitude": -86.62022593812661,
+        "Hours": ["By Appointment"]
     },
     {
         "County": "Monroe",
@@ -6762,14 +6762,14 @@
         "Website": "http://bentontownshiptrustee.org/",
         "Latitude": 39.2306757,
         "Longitude": -86.4251075,
-        "Hours": []
+        "Hours": ["By Appointment"]
     },
     {
         "County": "Monroe",
         "Name": "Bloomington Township Trustee",
         "Address": "924 W 17th St Suite C, Bloomington, IN 47404, United States",
         "Phone": "(812) 336-4976",
-        "Website": "N/A",
+        "Website": "https://www.bloomingtontownship.in.gov/",
         "Latitude": 39.1792536,
         "Longitude": -86.5435801,
         "Hours": [
@@ -6787,9 +6787,10 @@
         "Name": "Clear Creek Township Trustee",
         "Address": "9206 S Old State Rd 37, Bloomington, IN 47403, United States",
         "Phone": "(812) 824-7225",
-        "Website": "N/A",
+        "Website": "https://www.co.monroe.in.us/department/?structureid=157",
         "Latitude": 39.01349750000001,
-        "Longitude": -86.5414423
+        "Longitude": -86.5414423,
+        "Hours": ["By Appointment"]
     },
     {
         "County": "Monroe",
@@ -6798,14 +6799,15 @@
         "Phone": "(812) 824-4981",
         "Website": "N/A",
         "Latitude": 39.048866,
-        "Longitude": -86.60996209999999
+        "Longitude": -86.60996209999999,
+        "Hours": ["By Appointment"]
     },
     {
         "County": "Monroe",
         "Name": "Perry Township Trustee's Office",
         "Address": "1010 S Walnut St B, Bloomington, IN 47401, United States",
         "Phone": "(812) 336-3713",
-        "Website": "N/A",
+        "Website": "https://www.perrytownship.info/",
         "Latitude": 39.1546555,
         "Longitude": -86.53405099999999,
         "Hours": [
@@ -6821,19 +6823,20 @@
     {
         "County": "Monroe",
         "Name": "Polk Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
-        "Hours": []
+        "Address": "9070 S Chapel Hill RD Heltonville, IN 47436",
+        "Phone": "(812) 902-8200",
+        "Website": "https://www.co.monroe.in.us/department/?structureid=157",
+        "Email": "polktownshiptrustee@gmail.com",
+        "Latitude": 39.02166874613418,
+        "Longitude": -86.41223421668826,
+        "Hours": ["By Appointment"]
     },
     {
         "County": "Monroe",
         "Name": "Richland Township Trustee",
         "Address": "416 S Park St, Ellettsville, IN 47429, United States",
         "Phone": "(812) 876-2000",
-        "Website": "N/A",
+        "Website": "https://richlandtownshiptrustee.org/",
         "Latitude": 39.2275392,
         "Longitude": -86.6206196,
         "Hours": [
@@ -6849,22 +6852,24 @@
     {
         "County": "Monroe",
         "Name": "Salt Creek Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
-        "Hours": []
+        "Address": "7333 E. Salt Creek Drive Bloomington, IN 47401",
+        "Phone": "(812) 837-9140",
+        "Website": "https://www.co.monroe.in.us/department/?structureid=157",
+        "Email": "jcareyhall@gmail.com",
+        "Latitude": 39.09034327712078,
+        "Longitude": -86.41725837175558,
+        "Hours": ["By Appointment"]
     },
     {
         "County": "Monroe",
         "Name": "Van Buren Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
-        "Hours": []
+        "Address": "2123 S. Kirby Rd. Bloomington, IN 47403",
+        "Phone": "(812) 825-4490",
+        "Email": "rbarrow@vanburentownship.org",
+        "Website": "https://www.vanburentownship.org/",
+        "Latitude": 39.146311092994225,
+        "Longitude": -86.61069006621241,
+        "Hours": ["Business hours: 8:30 a.m. to 12:00 p.m. and 1:00 p.m. to 4:00 p.m. Monday through Friday"]
     },
     {
         "County": "Monroe",
@@ -6872,8 +6877,10 @@
         "Address": "8137 N Fox Hollow Rd, Bloomington, IN 47408, United States",
         "Phone": "(812) 876-1158",
         "Website": "N/A",
+        "Email": "mvandeventertrustee@gmail.com",
         "Latitude": 39.282343,
-        "Longitude": -86.51361
+        "Longitude": -86.51361,
+        "Hours": ["By Appointment"]
     },
     {
         "County": "Montgomery",
