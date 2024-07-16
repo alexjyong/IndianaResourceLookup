@@ -10723,9 +10723,10 @@
     {
         "County": "Washington",
         "Name": "Brown Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "34 S. Hickory Street, Campbellsburg, IN 47108",
+        "Phone": "812-675-1527",
+        "Email": "sbennett@blueriver.net",
+        "Website": "N/A",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -10742,9 +10743,10 @@
     {
         "County": "Washington",
         "Name": "Gibson Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "8608 N. Zaring Road, Scottsburg, IN 47170",
+        "Phone": "812-595-0468",
+        "Email": "gibsontwp@hotmail.com",
+        "Website": "N/A",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -10752,9 +10754,10 @@
     {
         "County": "Washington",
         "Name": "Howard Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "8553 S. West Washington School Road, Fredericksburg, IN 47120",
+        "Phone": "812-755-4438",
+        "Email": "zelivetz@frontier.com",
+        "Website": "N/A",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -10762,9 +10765,10 @@
     {
         "County": "Washington",
         "Name": "Jackson Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "9905 S. State Road 335, Pekin, IN 47165",
+        "Phone": "812-844-3826",
+        "Email": "pmi320@hotmail.com",
+        "Website": "N/A",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -10772,9 +10776,10 @@
     {
         "County": "Washington",
         "Name": "Jefferson Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "3141 N. Cox Ferry Road, Salem, IN 47167",
+        "Phone": "812-404-8127",
+        "Email": "andrewknapp.trustee@gmail.com",
+        "Website": "N/A",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -10782,9 +10787,10 @@
     {
         "County": "Washington",
         "Name": "Madison Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "4065 S. Hardinsburg Road, Campbellsburg, IN 47108",
+        "Phone": "812-755-4989",
+        "Email": "lbadger60@gmail.com",
+        "Website": "N/A",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -10792,9 +10798,10 @@
     {
         "County": "Washington",
         "Name": "Monroe Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "8382 N. Lick Skillet Road, Vallonia, IN 47281",
+        "Phone": "812-620-9442",
+        "Email": "monroetownshiptrustee@gmail.com",
+        "Website": "N/A",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -10802,9 +10809,10 @@
     {
         "County": "Washington",
         "Name": "Pierce Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "4902 E. Robin Road, Pekin, IN 47165",
+        "Phone": "812-818-6544",
+        "Email": "piercetownshiptrusteewc@outlook.com",
+        "Website": "N/A",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -10812,9 +10820,10 @@
     {
         "County": "Washington",
         "Name": "Polk Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "P.O. Box 247, Pekin, IN 47165",
+        "Phone": "812-967-4036",
+        "Email": "sullivanchorolais@yahoo.com",
+        "Website": "N/A",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -10822,9 +10831,10 @@
     {
         "County": "Washington",
         "Name": "Posey Township Trustee",
-        "Address": "Posey Township, IN, USA",
-        "Phone": "",
-        "Website": "",
+        "Address": "9804 S. Horners Chapel Road, Fredericksburg, IN 47120",
+        "Phone": "812-620-4466",
+        "Email": "poseytwntrustee@gmail.com",
+        "Website": "N/A",
         "Latitude": 38.4444453,
         "Longitude": -86.1955169,
         "Hours": []
@@ -10832,9 +10842,10 @@
     {
         "County": "Washington",
         "Name": "Vernon Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "1564 N. West Washington School Road, Campbellsburg, IN 47108",
+        "Phone": "812-755-4655",
+        "Email": "vernontownship@live.com",
+        "Website": "N/A",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -10844,9 +10855,11 @@
         "Name": "Washington Township Trustee",
         "Address": "1201 E Hackberry St, Salem, IN 47167, United States",
         "Phone": "(812) 883-1315",
+        "Email": "jga.washtwptrustee@gmail.com",
         "Website": "N/A",
         "Latitude": 38.6129703,
-        "Longitude": -86.08796439999999
+        "Longitude": -86.08796439999999,
+        "Hours": []
     },
     {
         "County": "Wayne",
