@@ -10881,8 +10881,8 @@
     {
         "County": "Wayne",
         "Name": "Clay Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "10029 Swoveland Road Greens Fork, Wayne, IN 47345",
+        "Phone": "765-886-5002",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -10891,19 +10891,20 @@
     {
         "County": "Wayne",
         "Name": "Dalton Township Trustee",
-        "Address": "Dalton Township, IN, USA",
+        "Address": "14063 U.S. 35 Economy, Wayne, IN 47339",
         "Phone": "",
         "Website": "",
-        "Latitude": 39.9726962,
-        "Longitude": -85.1583064,
+        "Latitude": "",
+        "Longitude": "",
         "Hours": []
     },
     {
         "County": "Wayne",
         "Name": "Franklin Township Trustee",
         "Address": "",
-        "Phone": "",
+        "Phone": "765-220-2501, (alt) 765-220-2501",
         "Website": "",
+        "Email": "roll7925@gmail.com",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -10912,7 +10913,8 @@
         "County": "Wayne",
         "Name": "Green Township Trustee",
         "Address": "",
-        "Phone": "",
+        "Phone": "765-969-5094",
+        "Email": "rdc5948@frontier.com",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -10921,22 +10923,25 @@
     {
         "County": "Wayne",
         "Name": "Harrison Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "2761 Indiana 1 Cambridge City, Wayne, IN 47327",
+        "Phone": "765-994-5536",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
-        "Hours": []
+        "Hours": ["By Appointment"]
     },
     {
         "County": "Wayne",
         "Name": "Jackson Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "340 W. Main Street Cambridge City, IN 47327",
+        "Phone": "(765) 478-4620",
+        "Email": "trustee@jacksontrustee.com",
+        "Website": "https://jacksontrustee.com/",
         "Latitude": "",
         "Longitude": "",
-        "Hours": []
+        "Hours": ["Monday-Wednesday 10:00am - 4:30pm",
+        "Thursday and Friday by Appointment",
+        "Weekend Hours Available if Needed"]
     },
     {
         "County": "Wayne",
@@ -10991,7 +10996,7 @@
         "Name": "Wayne Township Trustee",
         "Address": "401 E Main St, Richmond, IN 47374, United States",
         "Phone": "(765) 973-9392",
-        "Website": "N/A",
+        "Website": "https://www.waynetownshiptrustee.com/",
         "Latitude": 39.8282283,
         "Longitude": -84.8955433,
         "Hours": [
@@ -11008,7 +11013,7 @@
         "County": "Wayne",
         "Name": "Webster Township Trustee",
         "Address": "",
-        "Phone": "",
+        "Phone": "765-277-2880",
         "Website": "",
         "Latitude": "",
         "Longitude": "",
@@ -11017,9 +11022,10 @@
     {
         "County": "Wells",
         "Name": "Chester Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "7620 S Meridian, Poneto, IN 46781",
+        "Phone": "260-694-6530",
+        "Email": "",
+        "Website": "https://wellscounty.org/township-trustees/",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -11027,9 +11033,10 @@
     {
         "County": "Wells",
         "Name": "Harrison Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "223 W Washington Ste 104, Bluffton, IN 46714",
+        "Phone": "(260) 824-6402",
+        "Email": "",
+        "Website": "https://wellscounty.org/township-trustees/",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -11037,9 +11044,10 @@
     {
         "County": "Wells",
         "Name": "Jackson Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "6620 W 900 S-90, Warren, IN 46792",
+        "Phone": "(765) 348-9160",
+        "Email": "",
+        "Website": "https://wellscounty.org/township-trustees/",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -11047,9 +11055,10 @@
     {
         "County": "Wells",
         "Name": "Jefferson Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "592 Indian Trace, Ossian, IN 46777",
+        "Phone": "260-704-6629",
+        "Email": "",
+        "Website": "https://wellscounty.org/township-trustees/",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -11067,9 +11076,10 @@
     {
         "County": "Wells",
         "Name": "Liberty Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "2365 S 300 W, Liberty Center, IN 46766",
+        "Phone": "260-694-6300",
+        "Email": "LibertyTownship90@gmail.com",
+        "Website": "https://wellscounty.org/township-trustees/",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -11077,9 +11087,10 @@
     {
         "County": "Wells",
         "Name": "Nottingham Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "8878 S Walnut, Petroleum, IN 46778",
+        "Phone": "(260) 827-8104",
+        "Email": "",
+        "Website": "https://wellscounty.org/township-trustees/",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -11087,9 +11098,10 @@
     {
         "County": "Wells",
         "Name": "Rockcreek Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "1870 W 300 N, Bluffton, IN 46714",
+        "Phone": "(260) 273-2598",
+        "Email": "",
+        "Website": "https://wellscounty.org/township-trustees/",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -11097,9 +11109,10 @@
     {
         "County": "Wells",
         "Name": "Union Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Address": "8313 N 600 W, Markle, IN 46770",
+        "Phone": "(260) 758-2426",
+        "Email": "",
+        "Website": "https://wellscounty.org/township-trustees/",
         "Latitude": "",
         "Longitude": "",
         "Hours": []
@@ -11109,7 +11122,7 @@
         "Name": "Wells County Trustee",
         "Address": "223 W Washington St, Bluffton, IN 46714, United States",
         "Phone": "(260) 824-6402",
-        "Website": "N/A",
+        "Website": "https://wellscounty.org/township-trustees/",
         "Latitude": 40.7389455,
         "Longitude": -85.17354209999999,
         "Hours": [
