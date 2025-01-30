@@ -8,10 +8,11 @@ services:
             - "8080:8080"
         environment:
             # see https://github.com/mediagis/nominatim-docker/tree/master/4.5#configuration for more options
-            PBF_URL: https://download.geofabrik.de/north-america/us/indiana-latest.osm.pbf
-            REPLICATION_URL: https://download.geofabrik.de/north-america/us/indiana-updates/
+            PBF_URL: http://download.geofabrik.de/north-america/us-midwest-latest.osm.pbf
+            REPLICATION_URL: http://download.geofabrik.de/north-america/us-midwest-updates/
             NOMINATIM_PASSWORD: very_secure_password
             IMPORT_TIGER_ADDRESSES: true
+            IMPORT_US_POSTCODES: true
         volumes:
             - nominatim-data:/var/lib/postgresql/16/main
         shm_size: 1gb
