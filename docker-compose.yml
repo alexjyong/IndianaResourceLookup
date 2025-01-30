@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+    nominatim:
+        container_name: nominatim
+        image: mediagis/nominatim:4.5
+        ports:
+            - "8080:8080"
+        environment:
+            # see https://github.com/mediagis/nominatim-docker/tree/master/4.5#configuration for more options
+            PBF_URL: https://download.geofabrik.de/north-america/us/indiana-latest.osm.pbf
+            REPLICATION_URL: https://download.geofabrik.de/north-america/us/indiana-updates/
+            NOMINATIM_PASSWORD: very_secure_password
+            IMPORT_TIGER_ADDRESSES: true
+        volumes:
+            - nominatim-data:/var/lib/postgresql/16/main
+        shm_size: 1gb
+
+volumes:
+    nominatim-data:
