@@ -39,23 +39,41 @@ def index():
 
 @app.route('/geocode', methods=['GET'])
 @auth.login_required
+@app.route('/geocode', methods=['GET'])
+@auth.login_required
 def geocode():
     address = request.args.get('address')
-    api_key = os.getenv("GOOGLE_MAPS_API_KEY")
-    base_url = "https://maps.googleapis.com/maps/api/geocode/json"
+    base_url = "https://nominatim.openstreetmap.org/search"
     params = {
-        "address": address,
-        "key": api_key
+        "q": address,
+        "format": "json",
+        "addressdetails": 1,
+        "limit": 1
     }
-    response = requests.get(base_url, params=params)
+    headers = {
+        "User-Agent": "YourAppName (your@email.com)"
+    }
+
+    # Get lat/lon from Nominatim
+    response = requests.get(base_url, params=params, headers=headers)
     data = response.json()
 
-    if response.status_code == 200 and data['results']:
-        location = data['results'][0]['geometry']['location']
-        latitude = location['lat']
-        longitude = location['lng']
+    if response.status_code == 200 and data:
+        location = data[0]
+        latitude = float(location['lat'])
+        longitude = float(location['lon'])
+
+        # Use the township lookup
         county, township = get_township(latitude, longitude)
-        return get_trustee_info(county, township)
+
+        if county and township:
+            return get_trustee_info(county, township)
+        else:
+            return jsonify({
+                "latitude": latitude,
+                "longitude": longitude,
+                "message": "No township found for the provided coordinates"
+            })
     else:
         return jsonify({
             "error": "Address not found or invalid"
