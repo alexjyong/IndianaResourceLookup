@@ -41,23 +41,42 @@ def index():
 @auth.login_required
 def geocode():
     address = request.args.get('address')
+    zip = request.args.get('zip')
     base_url = "https://nominatim.openstreetmap.org/search"
     params = {
-        "q": address,
         "format": "json",
-        "addressdetails": 1,
-        "limit": 1
+        "addressdetails": 1
     }
+
+    if zip:
+        params['postalcode'] = zip
+    if address:
+        params['q'] = address
+        params['limit'] = 1
     headers = {
-        "User-Agent": "YourAppName (your@email.com)"
+        "User-Agent": "Indiana Resource Lookup"
     }
+
 
     # Get lat/lon from Nominatim
     response = requests.get(base_url, params=params, headers=headers)
     data = response.json()
-
+    print(data)
     if response.status_code == 200 and data:
-        location = data[0]
+
+        if zip:
+            # if a zip code is provided, loop through each result and find the one with a state of Indiana
+            for item in data:
+                print (item)
+                if 'state' in item['address'] and item['address']['state'].lower() == 'indiana':
+                    location = item
+                    break
+            else:
+                # if no location with Indiana state is found, return the first result
+                location = data[0]
+        else:
+            # if we are using an address, just take the first result
+            location = data[0]
         latitude = float(location['lat'])
         longitude = float(location['lon'])
 
@@ -74,7 +93,7 @@ def geocode():
             })
     else:
         return jsonify({
-            "error": "Address not found or invalid"
+            "error": "Nothing found for the provided address or zip code"
         })
 
 def get_trustee_info(county, township):

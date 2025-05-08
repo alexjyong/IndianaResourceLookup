@@ -8,7 +8,9 @@ $(document).ready(function() {
     const countySelect = $('#countySelect');
     const filterSelect = $('#filterSelect');
     const addressForm = $('#addressForm');
+    const zipForm = $('#zipForm');
     const addressInput = $('#addressInput');
+    const zipInput = $('#zipInput');
     const resultsDiv = $('#results'); 
     const findNearestBtn = $('#findNearestBtn');
 
@@ -106,6 +108,50 @@ $(document).ready(function() {
             foodPantryData = data;
         })
         .catch(error => console.error('Error loading food pantry data:', error));
+
+    zipForm.submit(function(event) {
+            event.preventDefault();
+            const zip = zipInput.val();
+            if (zip) {
+                fetch(`/geocode?zip=${encodeURIComponent(zip)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.trustee) {
+                            const trustee = data.trustee;
+    
+                            // Clear existing markers
+                            markers.forEach(marker => map.removeLayer(marker));
+                            markers = [];
+    
+                            // Add trustee marker
+                            if (trustee.Latitude && trustee.Longitude) {
+                                const marker = L.marker([trustee.Latitude, trustee.Longitude], { icon: trusteeIcon }).addTo(map);
+                                marker.bindPopup(createPopupContent(trustee, 'Trustee'));
+                                markers.push(marker);
+    
+                                // Zoom to the trustee location and open the popup
+                                map.setView([trustee.Latitude, trustee.Longitude], 12);
+                                marker.openPopup();
+                            }
+                            else {
+                                alert("No office information for your trustee has been found. However, other data may be available below.");
+                            }
+                            
+    
+                            // Update results
+                            resultsDiv.empty();
+                            resultsDiv.append(createCard(trustee, 'Trustee'));
+    
+                        } else if (data.county) {
+                            alert(`No immediate trustee found for your address in ${data.county}. Showing other results in that area.`);
+                            countySelect.val(data.county).change();
+                        } else {
+                            alert('Address or zip not found or invalid');
+                        }
+                    })
+                    .catch(error => console.error('Error geocoding address:', error));
+            }
+        });
 
     addressForm.submit(function(event) {
         event.preventDefault();

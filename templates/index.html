@@ -13,11 +13,17 @@
     <div class="container">
         <h1 class="text-center text-primary">Indiana Trustee and Food Pantry Lookup</h1>
         <p class="lead text-center">Find local trustees and food pantries in your county. Trustees can provide assistance with essential needs such as food, shelter, and utilities. Learn more about their roles and responsibilities according to <a href="https://iga.in.gov/legislative/laws/2021/ic/titles/012" target="_blank">Indiana Code Title 12</a>.</p>
-        <button id="findNearestBtn" class="btn btn-success mb-4">Find Nearest Resource by device location</button>
+        <button id="findNearestBtn" class="btn btn-success mb-4">Find Nearest Resources by device location</button>
         <form id="addressForm" class="form-inline mb-4">
-            <label class="sr-only" for="addressInput">Address</label>
+            <label class="sr-only" for="addressInput">Find Trustee by Address</label>
             <input type="text" class="form-control mb-2 mr-sm-2" id="addressInput" placeholder="Enter full address">
             <button type="submit" class="btn btn-primary mb-2">Find Trustee by Address</button>
+        </form>
+
+        <form id="zipForm" class="form-inline mb-4">
+            <label class="sr-only" for="zipInput">Find Trustee by Zip Code</label>
+            <input type="text" class="form-control mb-2 mr-sm-2" id="zipInput" placeholder="Enter Zip Code">
+            <button type="submit" class="btn btn-primary mb-2">Find Trustee by Zip Code</button>
         </form>
         <div class="form-group">
             <label for="countySelect">Select County:</label>
