@@ -9,7 +9,10 @@ $(document).ready(function() {
     const filterSelect = $('#filterSelect');
     const addressForm = $('#addressForm');
     const addressInput = $('#addressInput');
-    const resultsDiv = $('#results'); // Define resultsDiv here
+    const resultsDiv = $('#results'); 
+    const findNearestBtn = $('#findNearestBtn');
+
+
 
     // Add default option to county select
     countySelect.append(`<option value="" selected>Select a county</option>`);
@@ -23,6 +26,58 @@ $(document).ready(function() {
             });
         })
         .catch(error => console.error('Error loading counties:', error));
+
+    // Get the user's current location
+    findNearestBtn.click(function () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                let { latitude, longitude } = position.coords;
+
+                // Call the backend to find the nearest resources
+                fetch(`/reverse-geocode?lat=${latitude}&lon=${longitude}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        resultsDiv.empty();
+
+                        if (data.trustee) {
+                            const trustee = data.trustee;
+
+                            if (trustee.Latitude && trustee.Longitude) {
+                                const marker = L.marker([trustee.Latitude, trustee.Longitude], { icon: trusteeIcon }).addTo(map);
+                                marker.bindPopup(createPopupContent(trustee, 'Trustee'));
+                                markers.push(marker);
+                                map.setView([trustee.Latitude, trustee.Longitude], 12);
+                                marker.openPopup();
+                            }
+
+                            resultsDiv.append(createCard(trustee, 'Trustee'));
+                        }
+
+                        if (data.food_pantries && data.food_pantries.length > 0) {
+                            data.food_pantries.forEach(pantry => {
+                                if (pantry.Latitude && pantry.Longitude) {
+                                    const marker = L.marker([pantry.Latitude, pantry.Longitude], { icon: foodPantryIcon }).addTo(map);
+                                    marker.bindPopup(createPopupContent(pantry, 'Food Pantry'));
+                                    markers.push(marker);
+                                }
+
+                                resultsDiv.append(createCard(pantry, 'Food Pantry'));
+                            });
+                        }
+
+                        if (!data.trustee && (!data.food_pantries || data.food_pantries.length === 0)) {
+                            alert("No trustee or food pantry information found for your location.");
+                        }
+                    })
+                    .catch(error => console.error('Error fetching data:', error));
+            }, error => {
+                alert("Error getting your location. Make sure location services are enabled.");
+                console.error(error);
+            });
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    });
 
     countySelect.change(function() {
         const selectedCounty = $(this).val();

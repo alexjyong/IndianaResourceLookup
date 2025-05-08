@@ -98,5 +98,54 @@ def get_trustee_info(county, township):
             "error": "Trustee data file not found. Please check the file path."
         })
 
+@app.route('/reverse-geocode', methods=['GET'])
+@auth.login_required
+def reverse_geocode():
+    lat = request.args.get('lat')
+    lon = request.args.get('lon')
+
+    if not lat or not lon:
+        return jsonify({"error": "Latitude and longitude are required"}), 400
+
+    try:
+        latitude = float(lat)
+        longitude = float(lon)
+
+        # Get township and county
+        county, township = get_township(latitude, longitude)
+
+        if not county or not township:
+            return jsonify({"error": "No township found for the provided coordinates"}), 404
+        # Get trustee data
+        trustee_info = None
+        try:
+            with open('static/utilities/data/indiana_township_trustees.json', 'r') as f:
+                trustees = json.load(f)
+                for trustee in trustees:
+                    if trustee['County'].lower() == county.lower() and trustee['Name'].lower().startswith(township.lower()):
+                        trustee_info = trustee
+                        break
+        except FileNotFoundError:
+            print("Trustee data file not found.")
+
+        # Get food pantry data
+        food_pantries = []
+        try:
+            with open('static/utilities/data/indiana_food_pantries.json', 'r') as f:
+                pantries = json.load(f)
+                for pantry in pantries:
+                    if pantry['County'].lower() == county.lower():
+                        food_pantries.append(pantry)
+        except FileNotFoundError:
+            print("Food pantry data file not found.")
+
+        return jsonify({
+            "trustee": trustee_info,
+            "food_pantries": food_pantries
+        })
+
+    except ValueError:
+        return jsonify({"error": "Invalid latitude or longitude"}), 400
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
