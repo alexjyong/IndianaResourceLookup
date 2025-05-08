@@ -39,8 +39,6 @@ def index():
 
 @app.route('/geocode', methods=['GET'])
 @auth.login_required
-@app.route('/geocode', methods=['GET'])
-@auth.login_required
 def geocode():
     address = request.args.get('address')
     base_url = "https://nominatim.openstreetmap.org/search"
