@@ -6,13 +6,28 @@ from shapely.geometry import Point
 import json
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
+# Load environment variables from dotenv file
+
+load_dotenv()
+# Ensure the environment variable is set
+if 'PASSWORD' not in os.environ:
+    raise ValueError("Environment variable 'PASSWORD' not set. Please set it in your .env file.")
+
+if 'USERNAME' not in os.environ:
+    raise ValueError("Environment variable 'USERNAME' not set. Please set it in your .env file.")
+# get username from os
+username = os.getenv('USERNAME')
+# get password from os
+password = os.getenv('PASSWORD')
+
 # Define users and their passwords
 users = {
-    "admin": generate_password_hash("yourpassword")
+    username: generate_password_hash(password)
 }
 
 # Verify passwords
