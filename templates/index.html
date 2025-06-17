@@ -73,7 +73,22 @@
     <!-- Footer with Disclaimer -->
     <footer class="bg-light text-center text-lg-start mt-4">
         <div class="container p-4">
-            <p class="text-muted">Disclaimer: The information provided on this website is for general informational purposes only. While we strive to keep the information up to date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose. Any reliance you place on such information is therefore strictly at your own risk. If you find any inaccurate or missing information, please contact us at <a href="mailto:contact@yourdomain.com">contact@yourdomain.com</a>.</p>
+            <p class="text-muted">Disclaimer: The information provided on this website is for general informational purposes only. While we strive to keep the information up to date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose. Any reliance you place on such information is therefore strictly at your own risk. If you find any inaccurate or missing information, please contact us at the below form:</p>
+            <form
+            action="https://formspree.io/f/xkgbzgvr"
+            method="POST"
+            >
+                <label>
+                    Your email:
+                    <input type="email" name="email">
+                </label>
+                <br/>
+                <label>
+                    Your message:
+                    <textarea name="message"></textarea>
+                </label>
+                <button type="submit">Send</button>
+            </form>
         </div>
     </footer>
 
@@ -81,5 +96,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="static/script.js"></script>
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="alexjyong" data-color="#5F7FFF" data-emoji="☕"  data-font="Cookie" data-text="Support this website!" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
 </body>
 </html>
