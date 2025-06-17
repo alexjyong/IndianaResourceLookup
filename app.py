@@ -9,32 +9,32 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
 
 app = Flask(__name__)
-auth = HTTPBasicAuth()
+# auth = HTTPBasicAuth()
 
-# Load environment variables from dotenv file
+# # Load environment variables from dotenv file
 
-load_dotenv()
-# Ensure the environment variable is set
-if 'PASSWORD' not in os.environ:
-    raise ValueError("Environment variable 'PASSWORD' not set. Please set it in your .env file.")
+# load_dotenv()
+# # Ensure the environment variable is set
+# if 'PASSWORD' not in os.environ:
+#     raise ValueError("Environment variable 'PASSWORD' not set. Please set it in your .env file.")
 
-if 'USERNAME' not in os.environ:
-    raise ValueError("Environment variable 'USERNAME' not set. Please set it in your .env file.")
-# get username from os
-username = os.getenv('USERNAME')
-# get password from os
-password = os.getenv('PASSWORD')
+# if 'USERNAME' not in os.environ:
+#     raise ValueError("Environment variable 'USERNAME' not set. Please set it in your .env file.")
+# # get username from os
+# username = os.getenv('USERNAME')
+# # get password from os
+# password = os.getenv('PASSWORD')
 
-# Define users and their passwords
-users = {
-    username: generate_password_hash(password)
-}
+# # Define users and their passwords
+# users = {
+#     username: generate_password_hash(password)
+# }
 
-# Verify passwords
-@auth.verify_password
-def verify_password(username, password):
-    if username in users and check_password_hash(users.get(username), password):
-        return username
+# # Verify passwords
+# @auth.verify_password
+# def verify_password(username, password):
+#     if username in users and check_password_hash(users.get(username), password):
+#         return username
 
 # Load township boundaries
 township_gdf = gpd.read_file('static/utilities/data/indiana_townships.geojson')
@@ -48,12 +48,12 @@ def get_township(latitude, longitude):
     return None, None
 
 @app.route('/')
-@auth.login_required
+# @auth.login_required
 def index():
     return render_template('index.html')
 
 @app.route('/geocode', methods=['GET'])
-@auth.login_required
+# @auth.login_required
 def geocode():
     address = request.args.get('address')
     zip = request.args.get('zip')
@@ -133,7 +133,7 @@ def get_trustee_info(county, township):
         })
 
 @app.route('/reverse-geocode', methods=['GET'])
-@auth.login_required
+# @auth.login_required
 def reverse_geocode():
     lat = request.args.get('lat')
     lon = request.args.get('lon')
