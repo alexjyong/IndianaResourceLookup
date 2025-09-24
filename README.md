@@ -10,4 +10,13 @@ docker build -t indianaresourcemap .
 docker run -p 5000:5000 indianaresourcemap
 ```
 
+To update (yes this should be in docker-compose, and this should be using a database. I'm working on that!)
+
+```bash
+docker container ls #get the container id of the container
+docker container rm -f <container id>
+docker build -t indianaresourcemap .
+docker run -p 5000:5000 indianaresourcemap
+```
+
 PRs welcome.
