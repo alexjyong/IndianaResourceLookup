@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    image: indianaresourcemap:latest
+    container_name: indiana-resource-lookup
+    ports:
+      - "5000:5000"
+    volumes:
+      # Mount static files and data for easier updates without rebuilding
+      - ./static:/app/static
+      - ./templates:/app/templates
+      - ./utilities/data:/app/utilities/data
+    environment:
+      - FLASK_ENV=production
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Add a reverse proxy for production
+  # Uncomment if you want nginx for SSL termination and better performance
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: indiana-resource-nginx
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - ./ssl:/etc/nginx/ssl:ro
+  #   depends_on:
+  #     - web
+  #   restart: unless-stopped
