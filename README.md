@@ -7,7 +7,7 @@ Indiana township trustee information seems to be pretty decentralized, which mak
 
 ### First time setup:
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 ### To update the application:
@@ -16,20 +16,19 @@ docker-compose up -d
 git pull
 
 # Rebuild and restart (only rebuilds if code changed)
-docker-compose up -d --build
+docker compose up -d --build
 ```
 
 ### Other useful commands:
 ```bash
 # View logs
-docker-compose logs -f
+docker compose logs -f
 
 # Stop the application
-docker-compose down
+docker compose down
 
-# Force rebuild (if needed)
-docker-compose build --no-cache
-docker-compose up -d
+docker compose build --no-cache
+docker compose up -d
 ```
 
 ## Legacy Docker Commands (if not using docker-compose)
