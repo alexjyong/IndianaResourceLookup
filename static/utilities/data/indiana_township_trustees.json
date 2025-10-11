@@ -2485,52 +2485,52 @@
     {
         "County": "Elkhart",
         "Name": "Harrison Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
-        "Hours": []
+        "Address": "63095 County Road 13 Goshen, IN 46526",
+        "Phone": "574-875-5039",
+        "Website": "https://elkhartcounty.com/en/government/elkhart-county-government-officials/elkhart-county-township-trustees/harrison-township-trustee/",
+        "Latitude": "41.57891818297315",
+        "Longitude": "-85.92544111724641",
+        "Hours": ["Monday - Friday by appointment"]
     },
     {
         "County": "Elkhart",
         "Name": "Jackson Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
-        "Hours": []
+        "Address": "70755 County Road 27 Syracuse, IN 46567",
+        "Phone": "574-831-3322",
+        "Website": "https://elkhartcounty.com/en/government/elkhart-county-government-officials/elkhart-county-township-trustees/jackson-township-trustee/",
+        "Latitude": "41.46939103598902",
+        "Longitude": "-85.80042024501229",
+        "Hours": ["Wednesday, Friday 8am - 5pm, Thursday by appointment"]
     },
     {
         "County": "Elkhart",
         "Name": "Jefferson Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
-        "Hours": []
+        "Address": "58518 State Road 15 Goshen, IN 46528",
+        "Phone": "574-535-9015",
+        "Website": "https://elkhartcounty.com/en/government/elkhart-county-government-officials/elkhart-county-township-trustees/jefferson-township-trustee/",
+        "Latitude": "41.64508766923279",
+        "Longitude": "-85.82059303246841",
+        "Hours": ["Monday, Thursday 10am-2pm, other weekdays by appointment"]
     },
     {
         "County": "Elkhart",
         "Name": "Locke Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
-        "Hours": []
+        "Address": "302 N. Clark Street Nappanee, IN 46550",
+        "Phone": "574-773-3320",
+        "Website": "https://elkhartcounty.com/en/government/elkhart-county-government-officials/elkhart-county-township-trustees/locke-township-trustee/",
+        "Latitude": "41.444737653808",
+        "Longitude": "-86.00294877696585",
+        "Hours": ["Monday - Friday: By appointment only"]
     },
     {
         "County": "Elkhart",
         "Name": "Middlebury Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
-        "Hours": []
+        "Address": "117 North Main Street Middlebury, IN 46540",
+        "Phone": "574-825-3446",
+        "Website": "https://elkhartcounty.com/en/government/elkhart-county-government-officials/elkhart-county-township-trustees/middlebury-township-trustee/",
+        "Latitude": "41.67646967946488",
+        "Longitude": "-85.70639091409909",
+        "Hours": ["Monday - Thursday: 9:00AM - 4:00 PM"]
     },
     {
         "County": "Elkhart",
@@ -2540,14 +2540,14 @@
         "Website": "https://elkhartcounty.com/en/government/elkhart-county-government-officials/elkhart-county-township-trustees/olive-township-trustee/",
         "Latitude": 41.5501809,
         "Longitude": -86.0245461,
-        "Hours": []
+        "Hours": ["By appointment only"]
     },
     {
         "County": "Elkhart",
         "Name": "Osolo Township Trustee",
         "Address": "25600 Co Rd 4, Elkhart, IN 46514, United States",
         "Phone": "(574) 262-2175",
-        "Website": "N/A",
+        "Website": "https://elkhartcounty.com/en/government/elkhart-county-government-officials/elkhart-county-township-trustees/osolo-township-trustee/",
         "Latitude": 41.7384311,
         "Longitude": -85.9603161,
         "Hours": [
@@ -2565,7 +2565,7 @@
         "Name": "Union Township Trustee",
         "Address": "25243 Co Rd 48, Nappanee, IN 46550, United States",
         "Phone": "(574) 773-5534",
-        "Website": "",
+        "Website": "https://elkhartcounty.com/en/government/elkhart-county-government-officials/elkhart-county-township-trustees/union-township-trustee/",
         "Latitude": 41.4796941,
         "Longitude": -85.9485975,
         "Hours": [
@@ -2581,32 +2581,35 @@
     {
         "County": "Elkhart",
         "Name": "Washington Township Trustee",
-        "Address": "405 E Elkhart St, Bristol, IN 46507, United States",
+        "Address": "PO Box 373, Bristol, IN 46507",
         "Phone": "(574) 848-7024",
-        "Website": "",
+        "Website": "https://elkhartcounty.com/en/government/elkhart-county-government-officials/elkhart-county-township-trustees/washington-township-trustee/",
         "Latitude": 41.7200966,
         "Longitude": -85.8130223,
-        "Hours": []
+        "Hours": ["Monday - Friday: By appointment"]
     },
     {
         "County": "Elkhart",
         "Name": "York Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
-        "Hours": []
+        "Address": "P.O. Box 423 Middlebury, IN 46540",
+        "Phone": "574-848-9387",
+        "Website": "https://elkhartcounty.com/en/government/elkhart-county-government-officials/elkhart-county-township-trustees/york-township-trustee/",
+        "Latitude": "41.675259879538416",
+        "Longitude": "-85.70610636125275",
+        "Hours": ["By appointment"]
     },
     {
         "County": "Fayette",
         "Name": "Columbia Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
-        "Hours": []
+        "Address": "1660 W County Rd 350 S, Connersville, IN 47331",
+        "Phone": "(765) 825-5943",
+        "Website": "https://www.connersvillecommunity.com/fayette-county/fayette-county-trustees/",
+        "Latitude": "39.59173203004071",
+        "Longitude": "-85.17021078741422",
+        "Hours": [
+            "Tuesday: 8:00 AM - 4:00 PM",
+            "Thursday: 8:00 AM - 4:00 PM"
+        ]
     },
     {
         "County": "Fayette",
@@ -2630,70 +2633,71 @@
         "County": "Fayette",
         "Name": "Fairview Township Trustee",
         "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Phone": "(765) 570-8539",
+        "Website": "https://www.connersvillecommunity.com/fayette-county/fayette-county-trustees/",
         "Latitude": "",
         "Longitude": "",
-        "Hours": []
+        "Hours": ["By appointment only"]
     },
     {
         "County": "Fayette",
         "Name": "Harrison Township Trustees Office",
         "Address": "522 W 30th St, Connersville, IN 47331, United States",
         "Phone": "(765) 825-2271",
-        "Website": "N/A",
+        "Website": "https://www.connersvillecommunity.com/fayette-county/fayette-county-trustees/",
         "Latitude": 39.6723851,
-        "Longitude": -85.1299061
+        "Longitude": -85.1299061,
+        "Hours": ["by appointment only"]
     },
     {
         "County": "Fayette",
         "Name": "Jackson Township Trustee",
-        "Address": "",
-        "Phone": "",
-        "Website": "",
-        "Latitude": "",
-        "Longitude": "",
-        "Hours": []
+        "Address": "5495 IN-1, Connersville, IN 47331",
+        "Phone": "(765) 541-3211",
+        "Website": "https://www.connersvillecommunity.com/fayette-county/fayette-county-trustees/",
+        "Latitude": "39.5628503769653",
+        "Longitude": "-85.09007522956932",
+        "Hours": ["By appointment only"]
     },
     {
         "County": "Fayette",
         "Name": "Jennings Township Trustee",
         "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Phone": "(765) 827-6313",
+        "Website": "https://www.connersvillecommunity.com/fayette-county/fayette-county-trustees/",
         "Latitude": "",
         "Longitude": "",
-        "Hours": []
+        "Hours": ["By appointment only"]
     },
     {
         "County": "Fayette",
         "Name": "Orange Township Trustee",
         "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Phone": "(317) 402-8662",
+        "Website": "https://www.connersvillecommunity.com/fayette-county/fayette-county-trustees/",
         "Latitude": "",
         "Longitude": "",
-        "Hours": []
+        "Hours": ["By appointment only"]
     },
     {
         "County": "Fayette",
         "Name": "Posey Township Trustee",
         "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Phone": "(765) 265-0417",
+        "Website": "https://www.connersvillecommunity.com/fayette-county/fayette-county-trustees/",
         "Latitude": "",
         "Longitude": "",
-        "Hours": []
+        "Hours": ["By appointment only"]
     },
     {
         "County": "Fayette",
         "Name": "Waterloo Township Trustee",
         "Address": "",
-        "Phone": "",
-        "Website": "",
+        "Phone": "(765) 825-1264",
+        "Website": "https://www.connersvillecommunity.com/fayette-county/fayette-county-trustees/",
         "Latitude": "",
         "Longitude": "",
-        "Hours": []
+        "Hours": ["By appointment only"]
     },
     {
         "County": "Floyd",
