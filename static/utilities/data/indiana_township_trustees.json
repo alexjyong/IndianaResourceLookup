@@ -3232,7 +3232,7 @@
         "Name": "Center Township Trustee",
         "Address": "405 S Washington St, Marion, IN 46953, United States",
         "Phone": "(765) 573-8069",
-        "Website": "N/A",
+        "Website": "https://marioncentertownship.in/",
         "Latitude": 40.557572,
         "Longitude": -85.65966619999999,
         "Hours": [
@@ -3326,11 +3326,11 @@
     {
         "County": "Grant",
         "Name": "Richland Township Trustee",
-        "Address": "",
-        "Phone": "",
+        "Address": "5217 N 600 W Marion, IN 46952",
+        "Phone": "765-667-5133",
         "Website": "",
-        "Latitude": "",
-        "Longitude": "",
+        "Latitude": "40.627472251151225",
+        "Longitude": "-85.79013311169075",
         "Hours": []
     },
     {
