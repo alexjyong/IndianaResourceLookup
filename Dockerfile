@@ -25,15 +25,13 @@ RUN apt-get update && \
 ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
 ENV C_INCLUDE_PATH=/usr/include/gdal
 
-# Install Python dependencies directly
+# Install Python dependencies
 RUN pip install --no-cache-dir \
     Flask \
     requests \
-    python-dotenv \
     geopandas \
     shapely \
-    flask-httpauth \
-    werkzeug
+    cachetools
 
 # Copy application files
 COPY . .

@@ -30,13 +30,13 @@
         <button id="findNearestBtn" class="btn btn-success mb-4">Find Nearest Resources by device location</button>
         <form id="addressForm" class="form-inline mb-4">
             <label class="sr-only" for="addressInput">Find Trustee by Address</label>
-            <input type="text" class="form-control mb-2 mr-sm-2" id="addressInput" placeholder="Enter full address">
+            <input type="text" class="form-control mb-2 mr-sm-2" id="addressInput" placeholder="Enter full address" required minlength="5">
             <button type="submit" class="btn btn-primary mb-2">Find Trustee by Address</button>
         </form>
 
         <form id="zipForm" class="form-inline mb-4">
             <label class="sr-only" for="zipInput">Find Trustee by Zip Code</label>
-            <input type="text" class="form-control mb-2 mr-sm-2" id="zipInput" placeholder="Enter Zip Code">
+            <input type="text" class="form-control mb-2 mr-sm-2" id="zipInput" placeholder="Enter Zip Code" required pattern="[0-9]{5}" title="Please enter a valid 5-digit zip code">
             <button type="submit" class="btn btn-primary mb-2">Find Trustee by Zip Code</button>
         </form>
         <div class="form-group">
@@ -53,6 +53,7 @@
                 <option value="food_pantry">Food Pantry</option>
             </select>
         </div>
+        <div id="error-message" class="alert alert-danger" role="alert" style="display: none;"></div>
         <div id="map" style="height: 500px;"></div>
         <div id="results"></div>
     </div>
