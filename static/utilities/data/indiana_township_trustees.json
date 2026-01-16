@@ -8013,9 +8013,9 @@
     {
         "County": "Porter",
         "Name": "Boone Township Trustee",
-        "Address": "106 East Sigler Street",
+        "Address": "106 East Sigler Street, Hebron Indiana 46341",
         "Phone": "219-996-7121",
-        "Website": "https://porterco.org/2028/Boone-Township-Trustee",
+        "Website": "https://www.portercountyin.gov/2028/Boone-Township-Trustee",
         "Latitude": "41.318413577072164",
         "Longitude": "-87.19913125116224",
         "Hours": []
@@ -8025,7 +8025,7 @@
         "Name": "Center Township Trustee",
         "Address": "202 Roosevelt Rd, Valparaiso, IN 46383, United States",
         "Phone": "(219) 462-0810",
-        "Website": "https://porterco.org/2024/Center-Township-Trustee",
+        "Website": "https://www.portercountyin.gov/2024/Center-Township-Trustee",
         "Latitude": 41.4698806,
         "Longitude": -87.0462124,
         "Hours": [
@@ -8043,7 +8043,7 @@
         "Name": "Jackson Township Trustee",
         "Address": "318 E 1050 N, Chesterton, IN 46304, United States",
         "Phone": "(219) 926-8270",
-        "Website": "https://porterco.org/2023/Jackson-Township-Trustee",
+        "Website": "https://www.portercountyin.gov/2023/Jackson-Township-Trustee",
         "Latitude": 41.5846532,
         "Longitude": -87.00502879999999,
         "Hours": []
@@ -8053,7 +8053,7 @@
         "Name": "Liberty Township Trustee",
         "Address": "71 W. US Highway 6 Valparaiso, IN 46385",
         "Phone": "219-242-8347",
-        "Website": "https://porterco.org/2031/Liberty-Township-Trustee",
+        "Website": "https://www.portercountyin.gov/2031/Liberty-Township-Trustee",
         "Latitude": 41.550398915683864,
         "Longitude": -87.07991904336585,
         "Hours": [
@@ -8153,7 +8153,7 @@
         "Name": "Union Township Trustee of Porter County",
         "Address": "330 W US Hwy 30, Valparaiso, IN 46385, United States",
         "Phone": "(219) 759-1482",
-        "Website": "https://porterco.org/2025/Union-Township-Trustee",
+        "Website": "https://www.portercountyin.gov/2030/Porter-Township-Trustee",
         "Latitude": 41.4679271,
         "Longitude": -87.1309493
     },
@@ -8162,7 +8162,7 @@
         "Name": "Washington Township Trustee",
         "Address": "380 E. State Road 2 Valparaiso, IN 46383",
         "Phone": "219-531-0050",
-        "Website": "https://porterco.org/2029/Washington-Township-Trustee",
+        "Website": "https://www.portercountyin.gov/2029/Washington-Township-Trustee",
         "Latitude": 41.48354190454074,
         "Longitude": -86.99238083063857,
         "Hours": ["Office hours by appointment only"]
@@ -8172,7 +8172,7 @@
         "Name": "Westchester Township Trustee",
         "Address": "100 W Indiana Ave, Chesterton, IN 46304, United States",
         "Phone": "(219) 926-1405",
-        "Website": "https://porterco.org/2027/Westchester-Township-Trustee",
+        "Website": "https://www.portercountyin.gov/2027/Westchester-Township-Trustee",
         "Latitude": 41.6101348,
         "Longitude": -87.05233779999999,
         "Hours": []

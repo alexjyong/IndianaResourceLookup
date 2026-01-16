@@ -1,199 +1,259 @@
-let trusteeData = [];
-let foodPantryData = [];
 let countyData = [];
 let map;
 let markers = [];
 
 $(document).ready(function() {
     const countySelect = $('#countySelect');
+    const townshipSelect = $('#townshipSelect');
+    const townshipLookupBtn = $('#townshipLookupBtn');
     const filterSelect = $('#filterSelect');
     const addressForm = $('#addressForm');
     const zipForm = $('#zipForm');
     const addressInput = $('#addressInput');
     const zipInput = $('#zipInput');
-    const resultsDiv = $('#results'); 
+    const resultsDiv = $('#results');
     const findNearestBtn = $('#findNearestBtn');
+    const errorMessageDiv = $('#error-message');
 
+    function showError(message) {
+        errorMessageDiv.text(message).fadeIn();
+        setTimeout(() => errorMessageDiv.fadeOut(), 5000);
+    }
 
+    function clearError() {
+        errorMessageDiv.hide();
+    }
 
-    // Add default option to county select
-    countySelect.append(`<option value="" selected>Select a county</option>`);
-
-    fetch('static/utilities/data/counties_bounding_boxes.json')
-        .then(response => response.json())
-        .then(data => {
+    async function loadCountyData() {
+        try {
+            const response = await fetch('static/utilities/data/counties_bounding_boxes.json');
+            if (!response.ok) throw new Error('Failed to load county data');
+            const data = await response.json();
             countyData = data;
+
+            countySelect.append(`<option value="" selected>Select a county</option>`);
             data.forEach(county => {
                 countySelect.append(`<option value="${county.name}">${county.name}</option>`);
             });
-        })
-        .catch(error => console.error('Error loading counties:', error));
+        } catch (error) {
+            console.error('Error loading counties:', error);
+            showError('Failed to load county data. Please refresh the page.');
+        }
+    }
 
-    // Get the user's current location
-    findNearestBtn.click(function () {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-                let { latitude, longitude } = position.coords;
+    loadCountyData();
 
-                // Call the backend to find the nearest resources
-                fetch(`/reverse-geocode?lat=${latitude}&lon=${longitude}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        resultsDiv.empty();
+    findNearestBtn.click(async function () {
+        clearError();
+        if (!navigator.geolocation) {
+            showError("Geolocation is not supported by this browser.");
+            return;
+        }
 
-                        if (data.trustee) {
-                            const trustee = data.trustee;
-
-                            if (trustee.Latitude && trustee.Longitude) {
-                                const marker = L.marker([trustee.Latitude, trustee.Longitude], { icon: trusteeIcon }).addTo(map);
-                                marker.bindPopup(createPopupContent(trustee, 'Trustee'));
-                                markers.push(marker);
-                                map.setView([trustee.Latitude, trustee.Longitude], 12);
-                                marker.openPopup();
-                            }
-
-                            resultsDiv.append(createCard(trustee, 'Trustee'));
-                        }
-
-                        if (data.food_pantries && data.food_pantries.length > 0) {
-                            data.food_pantries.forEach(pantry => {
-                                if (pantry.Latitude && pantry.Longitude) {
-                                    const marker = L.marker([pantry.Latitude, pantry.Longitude], { icon: foodPantryIcon }).addTo(map);
-                                    marker.bindPopup(createPopupContent(pantry, 'Food Pantry'));
-                                    markers.push(marker);
-                                }
-
-                                resultsDiv.append(createCard(pantry, 'Food Pantry'));
-                            });
-                        }
-
-                        if (!data.trustee && (!data.food_pantries || data.food_pantries.length === 0)) {
-                            alert("No trustee or food pantry information found for your location.");
-                        }
-                    })
-                    .catch(error => console.error('Error fetching data:', error));
-            }, error => {
-                alert("Error getting your location. Make sure location services are enabled.");
-                console.error(error);
+        try {
+            const position = await new Promise((resolve, reject) => {
+                navigator.geolocation.getCurrentPosition(resolve, reject);
             });
-        } else {
-            alert("Geolocation is not supported by this browser.");
+
+            const { latitude, longitude } = position.coords;
+
+            const response = await fetch(`/reverse-geocode?lat=${latitude}&lon=${longitude}`);
+            if (!response.ok) {
+                const err = await response.json();
+                throw new Error(err.error || 'Failed to find resources');
+            }
+
+            const data = await response.json();
+            resultsDiv.empty();
+
+            if (data.trustee) {
+                const trustee = data.trustee;
+
+                if (trustee.Latitude && trustee.Longitude) {
+                    const marker = L.marker([trustee.Latitude, trustee.Longitude], { icon: trusteeIcon }).addTo(map);
+                    marker.bindPopup(createPopupContent(trustee, 'Trustee'));
+                    markers.push(marker);
+                    map.setView([trustee.Latitude, trustee.Longitude], 12);
+                    marker.openPopup();
+                }
+
+                resultsDiv.append(createCard(trustee, 'Trustee'));
+            }
+
+            if (data.food_pantries && data.food_pantries.length > 0) {
+                data.food_pantries.forEach(pantry => {
+                    if (pantry.Latitude && pantry.Longitude) {
+                        const marker = L.marker([pantry.Latitude, pantry.Longitude], { icon: foodPantryIcon }).addTo(map);
+                        marker.bindPopup(createPopupContent(pantry, 'Food Pantry'));
+                        markers.push(marker);
+                    }
+
+                    resultsDiv.append(createCard(pantry, 'Food Pantry'));
+                });
+            }
+
+            if (!data.trustee && (!data.food_pantries || data.food_pantries.length === 0)) {
+                showError("No trustee or food pantry information found for your location.");
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            showError(error.message || 'Failed to get your location or find resources.');
         }
     });
 
-    countySelect.change(function() {
+    countySelect.change(async function() {
         const selectedCounty = $(this).val();
-        const selectedFilter = filterSelect.val();
-        displayResults(selectedCounty, selectedFilter);
-        updateMap(selectedCounty, selectedFilter);
+        townshipSelect.empty();
+
+        if (selectedCounty) {
+            clearError();
+            const selectedFilter = filterSelect.val();
+            loadCountyResources(selectedCounty, selectedFilter);
+
+            try {
+                const response = await fetch(`/townships?county=${encodeURIComponent(selectedCounty)}`);
+                if (!response.ok) throw new Error('Failed to load townships');
+                const data = await response.json();
+
+                townshipSelect.append(`<option value="">Select a township</option>`);
+                data.townships.forEach(township => {
+                    townshipSelect.append(`<option value="${township}">${township}</option>`);
+                });
+                townshipSelect.prop('disabled', false);
+            } catch (error) {
+                console.error('Error loading townships:', error);
+                townshipSelect.append(`<option value="">Failed to load townships</option>`);
+                townshipSelect.prop('disabled', true);
+            }
+        } else {
+            townshipSelect.append(`<option value="">Select a county first</option>`);
+            townshipSelect.prop('disabled', true);
+            townshipLookupBtn.prop('disabled', true);
+        }
+    });
+
+    townshipSelect.change(function() {
+        const hasSelection = $(this).val() !== '';
+        townshipLookupBtn.prop('disabled', !hasSelection);
+    });
+
+    townshipLookupBtn.click(async function() {
+        const county = countySelect.val();
+        const township = townshipSelect.val();
+
+        if (!county || !township) return;
+
+        clearError();
+        try {
+            const response = await fetch(`/trustee-lookup?county=${encodeURIComponent(county)}&township=${encodeURIComponent(township)}`);
+            if (!response.ok) {
+                const err = await response.json();
+                throw new Error(err.error || 'Failed to find trustee');
+            }
+            const data = await response.json();
+
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+            resultsDiv.empty();
+
+            if (data.trustee) {
+                const trustee = data.trustee;
+                if (trustee.Latitude && trustee.Longitude) {
+                    const marker = L.marker([trustee.Latitude, trustee.Longitude], { icon: trusteeIcon }).addTo(map);
+                    marker.bindPopup(createPopupContent(trustee, 'Trustee'));
+                    markers.push(marker);
+                    map.setView([trustee.Latitude, trustee.Longitude], 12);
+                    marker.openPopup();
+                }
+                resultsDiv.append(createCard(trustee, 'Trustee'));
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            showError(error.message || 'Failed to find trustee for the selected township.');
+        }
     });
 
     filterSelect.change(function() {
         const selectedCounty = countySelect.val();
-        const selectedFilter = $(this).val();
-        displayResults(selectedCounty, selectedFilter);
-        updateMap(selectedCounty, selectedFilter);
+        if (selectedCounty) {
+            clearError();
+            const selectedFilter = $(this).val();
+            loadCountyResources(selectedCounty, selectedFilter);
+        }
     });
 
-    fetch('static/utilities/data/indiana_township_trustees.json')
-        .then(response => response.json())
-        .then(data => {
-            trusteeData = data;
-        })
-        .catch(error => console.error('Error loading trustee data:', error));
+    function handleGeocodeResult(data) {
+        clearError();
+        if (data.error) {
+            showError(data.error);
+            return;
+        }
 
-    fetch('static/utilities/data/indiana_food_pantries.json')
-        .then(response => response.json())
-        .then(data => {
-            foodPantryData = data;
-        })
-        .catch(error => console.error('Error loading food pantry data:', error));
+        if (data.trustee) {
+            const trustee = data.trustee;
 
-    zipForm.submit(function(event) {
-            event.preventDefault();
-            const zip = zipInput.val();
-            if (zip) {
-                fetch(`/geocode?zip=${encodeURIComponent(zip)}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.trustee) {
-                            const trustee = data.trustee;
-    
-                            // Clear existing markers
-                            markers.forEach(marker => map.removeLayer(marker));
-                            markers = [];
-    
-                            // Add trustee marker
-                            if (trustee.Latitude && trustee.Longitude) {
-                                const marker = L.marker([trustee.Latitude, trustee.Longitude], { icon: trusteeIcon }).addTo(map);
-                                marker.bindPopup(createPopupContent(trustee, 'Trustee'));
-                                markers.push(marker);
-    
-                                // Zoom to the trustee location and open the popup
-                                map.setView([trustee.Latitude, trustee.Longitude], 12);
-                                marker.openPopup();
-                            }
-                            else {
-                                alert("No office information for your trustee has been found. However, other data may be available below.");
-                            }
-                            
-    
-                            // Update results
-                            resultsDiv.empty();
-                            resultsDiv.append(createCard(trustee, 'Trustee'));
-    
-                        } else if (data.county) {
-                            alert(`No immediate trustee found for your address in ${data.county}. Showing other results in that area.`);
-                            countySelect.val(data.county).change();
-                        } else {
-                            alert('Address or zip not found or invalid');
-                        }
-                    })
-                    .catch(error => console.error('Error geocoding address:', error));
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+
+            if (trustee.Latitude && trustee.Longitude) {
+                const marker = L.marker([trustee.Latitude, trustee.Longitude], { icon: trusteeIcon }).addTo(map);
+                marker.bindPopup(createPopupContent(trustee, 'Trustee'));
+                markers.push(marker);
+
+                map.setView([trustee.Latitude, trustee.Longitude], 12);
+                marker.openPopup();
+            } else {
+                showError("No office information for your trustee has been found. However, other data may be available below.");
             }
-        });
 
-    addressForm.submit(function(event) {
+            resultsDiv.empty();
+            resultsDiv.append(createCard(trustee, 'Trustee'));
+
+        } else if (data.county) {
+            showError(`No immediate trustee found for your address in ${data.county}. Showing other results in that area.`);
+            countySelect.val(data.county).change();
+        } else {
+            showError('Address or zip not found or invalid');
+        }
+    }
+
+    zipForm.submit(async function(event) {
         event.preventDefault();
+        clearError();
+        const zip = zipInput.val();
+        if (!zip) return;
+
+        try {
+            const response = await fetch(`/geocode?zip=${encodeURIComponent(zip)}`);
+            if (!response.ok) {
+                const err = await response.json();
+                throw new Error(err.error || 'Failed to geocode zip code');
+            }
+            const data = await response.json();
+            handleGeocodeResult(data);
+        } catch (error) {
+            console.error('Error geocoding zip:', error);
+            showError(error.message || 'Failed to find location for the provided zip code.');
+        }
+    });
+
+    addressForm.submit(async function(event) {
+        event.preventDefault();
+        clearError();
         const address = addressInput.val();
-        if (address) {
-            fetch(`/geocode?address=${encodeURIComponent(address)}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.trustee) {
-                        const trustee = data.trustee;
+        if (!address) return;
 
-                        // Clear existing markers
-                        markers.forEach(marker => map.removeLayer(marker));
-                        markers = [];
-
-                        // Add trustee marker
-                        if (trustee.Latitude && trustee.Longitude) {
-                            const marker = L.marker([trustee.Latitude, trustee.Longitude], { icon: trusteeIcon }).addTo(map);
-                            marker.bindPopup(createPopupContent(trustee, 'Trustee'));
-                            markers.push(marker);
-
-                            // Zoom to the trustee location and open the popup
-                            map.setView([trustee.Latitude, trustee.Longitude], 12);
-                            marker.openPopup();
-                        }
-                        else {
-                            alert("No office information for your trustee has been found. However, other data may be available below.");
-                        }
-                        
-
-                        // Update results
-                        resultsDiv.empty();
-                        resultsDiv.append(createCard(trustee, 'Trustee'));
-
-                    } else if (data.county) {
-                        alert(`No immediate trustee found for your address in ${data.county}. Showing other results in that area.`);
-                        countySelect.val(data.county).change();
-                    } else {
-                        alert('Address not found or invalid');
-                    }
-                })
-                .catch(error => console.error('Error geocoding address:', error));
+        try {
+            const response = await fetch(`/geocode?address=${encodeURIComponent(address)}`);
+            if (!response.ok) {
+                const err = await response.json();
+                throw new Error(err.error || 'Failed to geocode address');
+            }
+            const data = await response.json();
+            handleGeocodeResult(data);
+        } catch (error) {
+            console.error('Error geocoding address:', error);
+            showError(error.message || 'Failed to find location for the provided address.');
         }
     });
 
@@ -225,7 +285,23 @@ const foodPantryIcon = new L.Icon({
     shadowSize: [41, 41]
 });
 
-function updateMap(county, filter) {
+async function loadCountyResources(county, filter) {
+    try {
+        const response = await fetch(`/county-resources?county=${encodeURIComponent(county)}&filter=${filter}`);
+        if (!response.ok) {
+            const err = await response.json();
+            throw new Error(err.error || 'Failed to load county resources');
+        }
+        const data = await response.json();
+        displayResults(data, filter);
+        updateMap(data, county, filter);
+    } catch (error) {
+        console.error('Error loading county resources:', error);
+        showError(error.message || 'Failed to load resources for this county.');
+    }
+}
+
+function updateMap(data, county, filter) {
     markers.forEach(marker => map.removeLayer(marker));
     markers = [];
 
@@ -236,27 +312,23 @@ function updateMap(county, filter) {
         map.fitBounds(bounds);
     }
 
-    if (filter === 'all' || filter === 'trustee') {
-        const trustees = trusteeData.filter(item => item.County === county);
-        trustees.forEach(trustee => {
-            if (trustee.Latitude && trustee.Longitude) { //only show markers that have a location. Otherwise, don't bother.
+    if (data.trustees) {
+        data.trustees.forEach(trustee => {
+            if (trustee.Latitude && trustee.Longitude) {
                 const marker = L.marker([trustee.Latitude, trustee.Longitude], { icon: trusteeIcon }).addTo(map);
                 marker.bindPopup(createPopupContent(trustee, 'Trustee'));
                 markers.push(marker);
             }
-            
         });
     }
 
-    if (filter === 'all' || filter === 'food_pantry') {
-        const foodPantries = foodPantryData.filter(item => item.County === county);
-        foodPantries.forEach(foodPantry => {
-            if (foodPantry.Latitude && foodPantry.Longitude){ //only show markers that have a location. Otherwise, don't bother.
+    if (data.food_pantries) {
+        data.food_pantries.forEach(foodPantry => {
+            if (foodPantry.Latitude && foodPantry.Longitude) {
                 const marker = L.marker([foodPantry.Latitude, foodPantry.Longitude], { icon: foodPantryIcon }).addTo(map);
                 marker.bindPopup(createPopupContent(foodPantry, 'Food Pantry'));
                 markers.push(marker);
             }
-            
         });
     }
 
@@ -266,43 +338,50 @@ function updateMap(county, filter) {
     }
 }
 
-function createPopupContent(data, type) {
-    const directionsLink = data.Address ? 
-        `<a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.Address)}" target="_blank">Get Directions</a>` : 
-        `<a href="https://www.google.com/maps/dir/?api=1&destination=${data.Latitude},${data.Longitude}" target="_blank">Get Directions</a>`;
+function createResourceDetails(data, type) {
+    let directionsLink = '';
+    if (data.Address && data.Address.trim() !== '') {
+        directionsLink = `<a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.Address)}" target="_blank">Get Directions</a><br>`;
+    } else if (data.Latitude && data.Longitude) {
+        directionsLink = `<a href="https://www.google.com/maps/dir/?api=1&destination=${data.Latitude},${data.Longitude}" target="_blank">Get Directions</a><br>`;
+    }
 
     return `
-        <strong><em>Please note that not all locations are offices, please call before traveling to the location.</em></strong><br>
-        <strong>${data.Name} (${type})</strong><br>
-        <strong>Address:</strong> ${data.Address}<br>
-        <strong>Phone:</strong> <a href="tel:${data.Phone}">${data.Phone}</a><br>
-        <strong>Website:</strong> ${data.Website && data.Website !== "N/A" ? `<a href="${data.Website}" target="_blank">${data.Website}</a>` : 'No website available'}<br>
-        <strong>Hours:</strong><br>
-        <ul>${data.Hours && data.Hours.length > 0 ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}</ul>
-        ${directionsLink}<br>
-        <a href="#" class="report-link" data-name="${data.Name}" data-toggle="modal" data-target="#reportModal">Report Issues</a>
+        <strong>Address:</strong> ${data.Address || 'Not available'}<br>
+        <strong>Phone:</strong> ${data.Phone ? `<a href="tel:${data.Phone}">${data.Phone}</a>` : 'Not available'}<br>
+        <strong>Website:</strong> ${data.Website && data.Website !== "N/A" ? `<a href="${data.Website}" target="_blank">${data.Website}</a>` : 'Not available'}<br>
+        <strong>Hours:</strong>
+        <ul>${data.Hours && data.Hours.length > 0 ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : '<li>Not available</li>'}</ul>
+        ${directionsLink}<a href="#" class="report-link" data-name="${data.Name}" data-toggle="modal" data-target="#reportModal">Report Issues</a>
     `;
 }
 
-function displayResults(county, filter) {
+function createPopupContent(data, type) {
+    return `
+        <strong><em>Please note that not all locations are offices, please call before traveling to the location.</em></strong><br>
+        <strong>${data.Name} (${type})</strong><br>
+        ${createResourceDetails(data, type)}
+    `;
+}
+
+function displayResults(data, filter) {
     const resultsDiv = $('#results');
     resultsDiv.empty();
 
-    if (filter === 'all' || filter === 'trustee') {
-        const trustees = trusteeData.filter(item => item.County === county);
-        trustees.forEach(trustee => {
+    if (data.trustees && data.trustees.length > 0) {
+        resultsDiv.append(`<h4 class="mt-4 mb-3 text-primary">Township Trustees</h4>`);
+        data.trustees.forEach(trustee => {
             resultsDiv.append(createCard(trustee, 'Trustee'));
         });
     }
 
-    if (filter === 'all' || filter === 'food_pantry') {
-        const foodPantries = foodPantryData.filter(item => item.County === county);
-        foodPantries.forEach(foodPantry => {
+    if (data.food_pantries && data.food_pantries.length > 0) {
+        resultsDiv.append(`<h4 class="mt-4 mb-3" style="color: #d35400;">Food Pantries</h4>`);
+        data.food_pantries.forEach(foodPantry => {
             resultsDiv.append(createCard(foodPantry, 'Food Pantry'));
         });
     }
 
-    // Add event listener for report links
     $('.report-link').on('click', function() {
         const locationName = $(this).data('name');
         $('#location').val(locationName);
@@ -310,29 +389,19 @@ function displayResults(county, filter) {
 }
 
 function createCard(data, type) {
-    const directionsLink = data.Address ? 
-        `<a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.Address)}" target="_blank">Get Directions</a>` : 
-        `<a href="https://www.google.com/maps/dir/?api=1&destination=${data.Latitude},${data.Longitude}" target="_blank">Get Directions</a>`;
-
+    const borderStyle = type === 'Trustee' ? 'border-primary' : 'border-orange';
     return `
-        <div class="card">
+        <div class="card mb-3 ${borderStyle}" ${type !== 'Trustee' ? 'style="border-color: #d35400 !important;"' : ''}>
             <div class="card-body">
-                <h5 class="card-title">${data.Name} (${type})</h5>
+                <h5 class="card-title">${data.Name}</h5>
                 <p class="card-text">
-                    <strong>Address:</strong> ${data.Address}<br>
-                    <strong>Phone:</strong> <a href="tel:${data.Phone}">${data.Phone}</a><br>
-                    <strong>Website:</strong> ${data.Website && data.Website !== "N/A" ? `<a href="${data.Website}" target="_blank">${data.Website}</a>` : 'No website available'}<br>
-                    <strong>Hours:</strong>
-                    <ul>${data.Hours && data.Hours.length > 0 ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}</ul>
-                    ${directionsLink}<br>
-                    <a href="#" class="report-link" data-name="${data.Name}" data-toggle="modal" data-target="#reportModal">Report Issues</a>
+                    ${createResourceDetails(data, type)}
                 </p>
             </div>
         </div>
     `;
 }
 
-// Add event listener for report links
 $(document).on('click', '.report-link', function() {
     const locationName = $(this).data('name');
     $('#location').val(locationName);

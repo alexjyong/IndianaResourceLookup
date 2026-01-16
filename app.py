@@ -1,139 +1,227 @@
 from flask import Flask, request, jsonify, render_template
 import requests
-import os
 import geopandas as gpd
 from shapely.geometry import Point
 import json
-from flask_httpauth import HTTPBasicAuth
-from werkzeug.security import generate_password_hash, check_password_hash
-from dotenv import load_dotenv
+import config
+import time
+import threading
+from cachetools import TTLCache
 
 app = Flask(__name__)
-# auth = HTTPBasicAuth()
 
-# # Load environment variables from dotenv file
+class RateLimiter:
+    def __init__(self, min_interval=1.0):
+        self.min_interval = min_interval
+        self.last_request_time = 0
+        self.lock = threading.Lock()
 
-# load_dotenv()
-# # Ensure the environment variable is set
-# if 'PASSWORD' not in os.environ:
-#     raise ValueError("Environment variable 'PASSWORD' not set. Please set it in your .env file.")
+    def wait_if_needed(self):
+        with self.lock:
+            current_time = time.time()
+            time_since_last_request = current_time - self.last_request_time
 
-# if 'USERNAME' not in os.environ:
-#     raise ValueError("Environment variable 'USERNAME' not set. Please set it in your .env file.")
-# # get username from os
-# username = os.getenv('USERNAME')
-# # get password from os
-# password = os.getenv('PASSWORD')
+            if time_since_last_request < self.min_interval:
+                sleep_time = self.min_interval - time_since_last_request
+                time.sleep(sleep_time)
 
-# # Define users and their passwords
-# users = {
-#     username: generate_password_hash(password)
-# }
+            self.last_request_time = time.time()
 
-# # Verify passwords
-# @auth.verify_password
-# def verify_password(username, password):
-#     if username in users and check_password_hash(users.get(username), password):
-#         return username
+nominatim_limiter = RateLimiter(min_interval=1.0)
 
-# Load township boundaries
-township_gdf = gpd.read_file('static/utilities/data/indiana_townships.geojson')
+geocode_cache = TTLCache(maxsize=500, ttl=3600)
 
-# Function to determine the township for given coordinates
+def get_cached_geocode(query):
+    return geocode_cache.get(query)
+
+def cache_geocode(query, result):
+    geocode_cache[query] = result
+
+township_gdf = gpd.read_file(config.TOWNSHIP_GEO_FILE)
+
+with open(config.TRUSTEE_DATA_FILE, 'r') as f:
+    trustee_data_cache = json.load(f)
+
+with open(config.FOOD_PANTRY_FILE, 'r') as f:
+    food_pantry_data_cache = json.load(f)
+
 def get_township(latitude, longitude):
     point = Point(longitude, latitude)
-    for index, row in township_gdf.iterrows():
+    possible_matches_index = list(township_gdf.sindex.intersection(point.bounds))
+    possible_matches = township_gdf.iloc[possible_matches_index]
+
+    for idx, row in possible_matches.iterrows():
         if row['geometry'].contains(point):
             return row['cnty_name'], row['tl_2021_18_cousub_namelsad']
+
     return None, None
 
+def find_trustee_by_location(county, township):
+    for trustee in trustee_data_cache:
+        if trustee['County'].lower() == county.lower() and trustee['Name'].lower().startswith(township.lower()):
+            return trustee
+    return None
+
+def find_food_pantries_by_county(county):
+    return [pantry for pantry in food_pantry_data_cache if pantry['County'].lower() == county.lower()]
+
+def validate_coordinates(latitude, longitude):
+    try:
+        lat = float(latitude)
+        lon = float(longitude)
+
+        if not (-90 <= lat <= 90):
+            return False, "Latitude must be between -90 and 90"
+        if not (-180 <= lon <= 180):
+            return False, "Longitude must be between -180 and 180"
+
+        if not (config.INDIANA_LAT_MIN <= lat <= config.INDIANA_LAT_MAX):
+            return False, "Location is outside Indiana's latitude range"
+        if not (config.INDIANA_LON_MIN <= lon <= config.INDIANA_LON_MAX):
+            return False, "Location is outside Indiana's longitude range"
+
+        return True, (lat, lon)
+    except (ValueError, TypeError):
+        return False, "Invalid coordinate format"
+
 @app.route('/')
-# @auth.login_required
 def index():
     return render_template('index.html')
 
 @app.route('/geocode', methods=['GET'])
-# @auth.login_required
 def geocode():
     address = request.args.get('address')
-    zip = request.args.get('zip')
-    base_url = "https://nominatim.openstreetmap.org/search"
+    zip_code = request.args.get('zip')
+
+    if not address and not zip_code:
+        return jsonify({"error": "Address or zip code is required"}), 400
+
+    cache_key = f"zip:{zip_code}" if zip_code else f"addr:{address}"
+    cached_result = get_cached_geocode(cache_key)
+    if cached_result:
+        return cached_result
+
     params = {
         "format": "json",
         "addressdetails": 1
     }
 
-    if zip:
-        params['postalcode'] = zip
+    if zip_code:
+        params['postalcode'] = zip_code
     if address:
         params['q'] = address
         params['limit'] = 1
     headers = {
-        "User-Agent": "Indiana Resource Lookup"
+        "User-Agent": config.NOMINATIM_USER_AGENT
     }
 
+    try:
+        nominatim_limiter.wait_if_needed()
 
-    # Get lat/lon from Nominatim
-    response = requests.get(base_url, params=params, headers=headers)
-    data = response.json()
-    print(data)
-    if response.status_code == 200 and data:
+        response = requests.get(config.NOMINATIM_BASE_URL, params=params, headers=headers, timeout=config.NOMINATIM_TIMEOUT)
+        response.raise_for_status()
+        data = response.json()
 
-        if zip:
-            # if a zip code is provided, loop through each result and find the one with a state of Indiana
+        if not data:
+            return jsonify({"error": "No results found for the provided address or zip code"}), 404
+
+        location = None
+        if zip_code:
             for item in data:
-                print (item)
-                if 'state' in item['address'] and item['address']['state'].lower() == 'indiana':
+                if 'state' in item.get('address', {}) and item['address']['state'].lower() == 'indiana':
                     location = item
                     break
-            else:
-                # if no location with Indiana state is found, return the first result
-                location = data[0]
+            if not location:
+                return jsonify({"error": "Zip code not found in Indiana"}), 404
         else:
-            # if we are using an address, just take the first result
             location = data[0]
+
         latitude = float(location['lat'])
         longitude = float(location['lon'])
 
-        # Use the township lookup
         county, township = get_township(latitude, longitude)
 
         if county and township:
-            return get_trustee_info(county, township)
+            result = get_trustee_info(county, township)
+            cache_geocode(cache_key, result)
+            return result
         else:
             return jsonify({
-                "latitude": latitude,
-                "longitude": longitude,
-                "message": "No township found for the provided coordinates"
-            })
-    else:
-        return jsonify({
-            "error": "Nothing found for the provided address or zip code"
-        })
+                "error": "Location is outside Indiana or township data unavailable"
+            }), 404
+
+    except requests.exceptions.Timeout:
+        return jsonify({"error": "Request timed out. Please try again"}), 504
+    except requests.exceptions.RequestException as e:
+        return jsonify({"error": f"Error connecting to geocoding service: {str(e)}"}), 503
+    except (ValueError, KeyError) as e:
+        return jsonify({"error": "Invalid response from geocoding service"}), 500
+    except Exception as e:
+        return jsonify({"error": "An unexpected error occurred"}), 500
 
 def get_trustee_info(county, township):
-    """Gets trustee information for a given county and township."""
-    try:
-        with open('static/utilities/data/indiana_township_trustees.json', 'r') as f:
-            trustee_data = json.load(f)
-        for trustee in trustee_data:
-            if trustee['County'].lower() == county.lower() and trustee['Name'].lower().startswith(township.lower()):
-                return jsonify({
-                    "county": county,
-                    "township": township,
-                    "trustee": trustee
-                })
+    trustee = find_trustee_by_location(county, township)
+    if trustee:
         return jsonify({
             "county": county,
-            "message": "No immediate trustee found for the provided address"
+            "township": township,
+            "trustee": trustee
         })
-    except FileNotFoundError:
-        return jsonify({
-            "error": "Trustee data file not found. Please check the file path."
-        })
+    return jsonify({
+        "county": county,
+        "message": "No immediate trustee found for the provided address"
+    })
+
+@app.route('/townships', methods=['GET'])
+def get_townships():
+    county = request.args.get('county')
+    if not county:
+        return jsonify({"error": "County parameter is required"}), 400
+
+    townships = set()
+    for trustee in trustee_data_cache:
+        if trustee['County'].lower() == county.lower():
+            name = trustee['Name']
+            township_name = name.replace(' Township Trustee', '').replace(' Trustee', '')
+            townships.add(township_name)
+
+    return jsonify({"townships": sorted(list(townships))})
+
+@app.route('/trustee-lookup', methods=['GET'])
+def trustee_lookup():
+    county = request.args.get('county')
+    township = request.args.get('township')
+
+    if not county or not township:
+        return jsonify({"error": "County and township are required"}), 400
+
+    trustee = find_trustee_by_location(county, township)
+    if trustee:
+        return jsonify({"trustee": trustee})
+
+    return jsonify({"error": "No trustee found for that county/township"}), 404
+
+@app.route('/county-resources', methods=['GET'])
+def county_resources():
+    county = request.args.get('county')
+    filter_type = request.args.get('filter', 'all')
+
+    if not county:
+        return jsonify({"error": "County parameter is required"}), 400
+
+    response_data = {}
+
+    if filter_type in ['all', 'trustee']:
+        trustees = [t for t in trustee_data_cache if t['County'] == county]
+        response_data['trustees'] = trustees
+
+    if filter_type in ['all', 'food_pantry']:
+        food_pantries = find_food_pantries_by_county(county)
+        response_data['food_pantries'] = food_pantries
+
+    return jsonify(response_data)
 
 @app.route('/reverse-geocode', methods=['GET'])
-# @auth.login_required
 def reverse_geocode():
     lat = request.args.get('lat')
     lon = request.args.get('lon')
@@ -141,45 +229,28 @@ def reverse_geocode():
     if not lat or not lon:
         return jsonify({"error": "Latitude and longitude are required"}), 400
 
-    try:
-        latitude = float(lat)
-        longitude = float(lon)
+    is_valid, result = validate_coordinates(lat, lon)
+    if not is_valid:
+        return jsonify({"error": result}), 400
 
-        # Get township and county
+    latitude, longitude = result
+
+    try:
         county, township = get_township(latitude, longitude)
 
         if not county or not township:
             return jsonify({"error": "No township found for the provided coordinates"}), 404
-        # Get trustee data
-        trustee_info = None
-        try:
-            with open('static/utilities/data/indiana_township_trustees.json', 'r') as f:
-                trustees = json.load(f)
-                for trustee in trustees:
-                    if trustee['County'].lower() == county.lower() and trustee['Name'].lower().startswith(township.lower()):
-                        trustee_info = trustee
-                        break
-        except FileNotFoundError:
-            print("Trustee data file not found.")
 
-        # Get food pantry data
-        food_pantries = []
-        try:
-            with open('static/utilities/data/indiana_food_pantries.json', 'r') as f:
-                pantries = json.load(f)
-                for pantry in pantries:
-                    if pantry['County'].lower() == county.lower():
-                        food_pantries.append(pantry)
-        except FileNotFoundError:
-            print("Food pantry data file not found.")
+        trustee_info = find_trustee_by_location(county, township)
+        food_pantries = find_food_pantries_by_county(county)
 
         return jsonify({
             "trustee": trustee_info,
             "food_pantries": food_pantries
         })
 
-    except ValueError:
-        return jsonify({"error": "Invalid latitude or longitude"}), 400
+    except Exception as e:
+        return jsonify({"error": "An unexpected error occurred"}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host=config.FLASK_HOST, port=config.FLASK_PORT)
