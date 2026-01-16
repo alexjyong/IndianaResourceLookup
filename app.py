@@ -172,6 +172,35 @@ def get_trustee_info(county, township):
         "message": "No immediate trustee found for the provided address"
     })
 
+@app.route('/townships', methods=['GET'])
+def get_townships():
+    county = request.args.get('county')
+    if not county:
+        return jsonify({"error": "County parameter is required"}), 400
+
+    townships = set()
+    for trustee in trustee_data_cache:
+        if trustee['County'].lower() == county.lower():
+            name = trustee['Name']
+            township_name = name.replace(' Township Trustee', '').replace(' Trustee', '')
+            townships.add(township_name)
+
+    return jsonify({"townships": sorted(list(townships))})
+
+@app.route('/trustee-lookup', methods=['GET'])
+def trustee_lookup():
+    county = request.args.get('county')
+    township = request.args.get('township')
+
+    if not county or not township:
+        return jsonify({"error": "County and township are required"}), 400
+
+    trustee = find_trustee_by_location(county, township)
+    if trustee:
+        return jsonify({"trustee": trustee})
+
+    return jsonify({"error": "No trustee found for that county/township"}), 404
+
 @app.route('/county-resources', methods=['GET'])
 def county_resources():
     county = request.args.get('county')

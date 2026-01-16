@@ -4,6 +4,8 @@ let markers = [];
 
 $(document).ready(function() {
     const countySelect = $('#countySelect');
+    const townshipSelect = $('#townshipSelect');
+    const townshipLookupBtn = $('#townshipLookupBtn');
     const filterSelect = $('#filterSelect');
     const addressForm = $('#addressForm');
     const zipForm = $('#zipForm');
@@ -99,12 +101,75 @@ $(document).ready(function() {
         }
     });
 
-    countySelect.change(function() {
+    countySelect.change(async function() {
         const selectedCounty = $(this).val();
+        townshipSelect.empty();
+
         if (selectedCounty) {
             clearError();
             const selectedFilter = filterSelect.val();
             loadCountyResources(selectedCounty, selectedFilter);
+
+            try {
+                const response = await fetch(`/townships?county=${encodeURIComponent(selectedCounty)}`);
+                if (!response.ok) throw new Error('Failed to load townships');
+                const data = await response.json();
+
+                townshipSelect.append(`<option value="">Select a township</option>`);
+                data.townships.forEach(township => {
+                    townshipSelect.append(`<option value="${township}">${township}</option>`);
+                });
+                townshipSelect.prop('disabled', false);
+            } catch (error) {
+                console.error('Error loading townships:', error);
+                townshipSelect.append(`<option value="">Failed to load townships</option>`);
+                townshipSelect.prop('disabled', true);
+            }
+        } else {
+            townshipSelect.append(`<option value="">Select a county first</option>`);
+            townshipSelect.prop('disabled', true);
+            townshipLookupBtn.prop('disabled', true);
+        }
+    });
+
+    townshipSelect.change(function() {
+        const hasSelection = $(this).val() !== '';
+        townshipLookupBtn.prop('disabled', !hasSelection);
+    });
+
+    townshipLookupBtn.click(async function() {
+        const county = countySelect.val();
+        const township = townshipSelect.val();
+
+        if (!county || !township) return;
+
+        clearError();
+        try {
+            const response = await fetch(`/trustee-lookup?county=${encodeURIComponent(county)}&township=${encodeURIComponent(township)}`);
+            if (!response.ok) {
+                const err = await response.json();
+                throw new Error(err.error || 'Failed to find trustee');
+            }
+            const data = await response.json();
+
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+            resultsDiv.empty();
+
+            if (data.trustee) {
+                const trustee = data.trustee;
+                if (trustee.Latitude && trustee.Longitude) {
+                    const marker = L.marker([trustee.Latitude, trustee.Longitude], { icon: trusteeIcon }).addTo(map);
+                    marker.bindPopup(createPopupContent(trustee, 'Trustee'));
+                    markers.push(marker);
+                    map.setView([trustee.Latitude, trustee.Longitude], 12);
+                    marker.openPopup();
+                }
+                resultsDiv.append(createCard(trustee, 'Trustee'));
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            showError(error.message || 'Failed to find trustee for the selected township.');
         }
     });
 
@@ -274,18 +339,20 @@ function updateMap(data, county, filter) {
 }
 
 function createResourceDetails(data, type) {
-    const directionsLink = data.Address ?
-        `<a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.Address)}" target="_blank">Get Directions</a>` :
-        `<a href="https://www.google.com/maps/dir/?api=1&destination=${data.Latitude},${data.Longitude}" target="_blank">Get Directions</a>`;
+    let directionsLink = '';
+    if (data.Address && data.Address.trim() !== '') {
+        directionsLink = `<a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.Address)}" target="_blank">Get Directions</a><br>`;
+    } else if (data.Latitude && data.Longitude) {
+        directionsLink = `<a href="https://www.google.com/maps/dir/?api=1&destination=${data.Latitude},${data.Longitude}" target="_blank">Get Directions</a><br>`;
+    }
 
     return `
-        <strong>Address:</strong> ${data.Address}<br>
-        <strong>Phone:</strong> <a href="tel:${data.Phone}">${data.Phone}</a><br>
-        <strong>Website:</strong> ${data.Website && data.Website !== "N/A" ? `<a href="${data.Website}" target="_blank">${data.Website}</a>` : 'No website available'}<br>
+        <strong>Address:</strong> ${data.Address || 'Not available'}<br>
+        <strong>Phone:</strong> ${data.Phone ? `<a href="tel:${data.Phone}">${data.Phone}</a>` : 'Not available'}<br>
+        <strong>Website:</strong> ${data.Website && data.Website !== "N/A" ? `<a href="${data.Website}" target="_blank">${data.Website}</a>` : 'Not available'}<br>
         <strong>Hours:</strong>
-        <ul>${data.Hours && data.Hours.length > 0 ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : 'No open hours information available'}</ul>
-        ${directionsLink}<br>
-        <a href="#" class="report-link" data-name="${data.Name}" data-toggle="modal" data-target="#reportModal">Report Issues</a>
+        <ul>${data.Hours && data.Hours.length > 0 ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : '<li>Not available</li>'}</ul>
+        ${directionsLink}<a href="#" class="report-link" data-name="${data.Name}" data-toggle="modal" data-target="#reportModal">Report Issues</a>
     `;
 }
 
@@ -301,13 +368,15 @@ function displayResults(data, filter) {
     const resultsDiv = $('#results');
     resultsDiv.empty();
 
-    if (data.trustees) {
+    if (data.trustees && data.trustees.length > 0) {
+        resultsDiv.append(`<h4 class="mt-4 mb-3 text-primary">Township Trustees</h4>`);
         data.trustees.forEach(trustee => {
             resultsDiv.append(createCard(trustee, 'Trustee'));
         });
     }
 
-    if (data.food_pantries) {
+    if (data.food_pantries && data.food_pantries.length > 0) {
+        resultsDiv.append(`<h4 class="mt-4 mb-3" style="color: #d35400;">Food Pantries</h4>`);
         data.food_pantries.forEach(foodPantry => {
             resultsDiv.append(createCard(foodPantry, 'Food Pantry'));
         });
@@ -320,10 +389,11 @@ function displayResults(data, filter) {
 }
 
 function createCard(data, type) {
+    const borderStyle = type === 'Trustee' ? 'border-primary' : 'border-orange';
     return `
-        <div class="card">
+        <div class="card mb-3 ${borderStyle}" ${type !== 'Trustee' ? 'style="border-color: #d35400 !important;"' : ''}>
             <div class="card-body">
-                <h5 class="card-title">${data.Name} (${type})</h5>
+                <h5 class="card-title">${data.Name}</h5>
                 <p class="card-text">
                     ${createResourceDetails(data, type)}
                 </p>
