@@ -5640,7 +5640,10 @@
         "Phone": "(317) 296-3723",
         "Website": "https://imcaindy.org/food-pantry/",
         "Latitude": 39.8074101,
-        "Longitude": -86.2037007
+        "Longitude": -86.2037007,
+        "Hours": [
+            "Every 3rd Saturday from 10:30 AM - 12 PM and Every Sunday during Ramadan"
+        ]
     },
     {
         "County": "Marion",
