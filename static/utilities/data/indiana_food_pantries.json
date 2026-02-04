@@ -9826,5 +9826,124 @@
             "Saturday: Closed",
             "Sunday: 9:30 - 11:30 AM"
         ]
+    },
+    {
+        "County": "Marion",
+        "Name": "Old Bethel and Partners Food Pantry",
+        "Address": "8032 E 21st Street, Indianapolis, IN",
+        "Phone": "(317) 354-8858",
+        "Website": "https://www.oldbethel.org/food-pantry",
+        "Latitude": 39.79704569015483,
+        "Longitude": -86.02591854415091,
+        "Hours": [
+            "Tuesday: 9:00 AM - 6:00 PM (Every 4th Tuesday)",
+            "Thursday: 9:00 AM - 12:00 PM",
+            "Saturday: 9:00 AM - 1:00 PM"
+        ],
+        "Notes": "Serves all of Warren Township"
+    },
+    {
+        "County": "Marion",
+        "Name": "Christians United Church Drive-Thru Pantry",
+        "Address": "900 N Mitthoeffer Rd, Indianapolis, IN",
+        "Phone": "(317) 562-1218",
+        "Website": "https://cucindy.org/missional-food-pantry",
+        "Latitude": 39.77989846251005,
+        "Longitude": -85.99162119086962,
+        "Hours": [
+            "Tuesday: 6:30 PM - 8:00 PM"
+        ],
+        "Notes": "Everyone welcome"
+    },
+    {
+        "County": "Marion",
+        "Name": "Linwood Christian Church Food Pantry",
+        "Address": "4424 E Michigan St, Indianapolis, IN",
+        "Phone": "317-357-8771",
+        "Website": "https://www.linwoodchristian.org/foodpantry.html",
+        "Latitude": 39.77503647442404,
+        "Longitude": -86.09323188913602,
+        "Hours": [
+            "Wednesday: 9:00 AM - 11:00 AM"
+        ],
+        "Notes": "Everyone welcome. Coffee hour 8-9 AM"
+    },
+    {
+        "County": "Marion",
+        "Name": "ICAN Food Pantry at Downey Avenue Christian Church",
+        "Address": "111 S Downey Ave, Indianapolis, IN 46219",
+        "Phone": "317-359-5304",
+        "Website": "https://www.downeyavenue.com/",
+        "Latitude": 39.76848034239733,
+        "Longitude": -86.07643190614172,
+        "Hours": [
+            "Thursday: 1:00 PM - 3:00 PM"
+        ],
+        "Notes": "Serves zip code 46219"
+    },
+    {
+        "County": "Marion",
+        "Name": "Tuxedo Park Baptist Church Food Pantry",
+        "Address": "29 N Grant Ave, Indianapolis, IN",
+        "Phone": "(317) 357-8087",
+        "Website": "https://tpbchurch.org/",
+        "Latitude": 39.770478785852546,
+        "Longitude": -86.097132287734,
+        "Hours": [
+            "Thursday: 5:00 PM - 7:00 PM (2nd and 4th Thursdays)"
+        ],
+        "Notes": "Everyone welcome"
+    },
+    {
+        "County": "Marion",
+        "Name": "David Nolen Pantry of Hope Drive-Thru",
+        "Address": "11850 Brookville Rd, Indianapolis, IN",
+        "Phone": "317-752-1500",
+        "Website": "https://www.hopecenterindy.org/",
+        "Latitude": 39.73925225803979,
+        "Longitude": -85.95299114442416,
+        "Hours": [
+            "Thursday: 5:00 PM - 7:00 PM"
+        ],
+        "Notes": "No ID required. Everyone served"
+    },
+    {
+        "County": "Marion",
+        "Name": "Wallace Street Evangelical Church Food Pantry",
+        "Address": "4805 E 10th St, Indianapolis, IN",
+        "Phone": "+13173578091",
+        "Website": "http://www.wsec-indy.org/",
+        "Latitude": 39.78122104557339,
+        "Longitude": -86.08853772904796,
+        "Hours": [
+            "Friday: 9:30 AM - 11:00 AM"
+        ],
+        "Notes": "Everyone welcome"
+    },
+    {
+        "County": "Marion",
+        "Name": "Shepherd Community Center Food Pantry",
+        "Address": "4107 E Washington St, Indianapolis, IN 46201",
+        "Phone": "317-375-0203",
+        "Website": "https://shepherdcommunity.org/",
+        "Latitude": 39.76790939534867,
+        "Longitude": -86.09744223987212,
+        "Hours": [
+            "Saturday: 9:00 AM - 11:00 AM"
+        ],
+        "Notes": "Serves zip codes 46201 and 46203"
+    },
+    {
+        "County": "Marion",
+        "Name": "Southport Heights Christian Church Food Pantry",
+        "Address": "7154 McFarland Rd, Southport, IN 46227",
+        "Phone": "317-783-7714",
+        "Website": "https://southportheights.church/foodpantry",
+        "Latitude": 39.661843078742685, 
+        "Longitude": -86.11488473512038,
+        "Hours": [
+            "Saturday: 2:00 PM - 4:00 PM (2nd and 4th Saturdays)"
+        ],
+        "Notes": "Food pantry, Hygiene Hub and Clothing closet. Everyone welcome"
     }
 ]
