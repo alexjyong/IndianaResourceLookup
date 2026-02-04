@@ -1,0 +1,35 @@
+# Nginx configuration for Indiana Resource Lookup
+# Copy to /etc/nginx/sites-available/thecollectiveresourceguide.org
+# Then: sudo ln -s /etc/nginx/sites-available/thecollectiveresourceguide.org /etc/nginx/sites-enabled/
+# Test: sudo nginx -t
+# Reload: sudo systemctl reload nginx
+
+upstream flask_app {
+    server 127.0.0.1:5000 max_fails=3 fail_timeout=10s;
+    keepalive 8;
+}
+
+server {
+    server_name thecollectiveresourceguide.org www.thecollectiveresourceguide.org;
+
+    location / {
+        proxy_pass http://flask_app;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Connection "";
+
+        # Retry on connection errors (covers container restart)
+        proxy_connect_timeout 5s;
+        proxy_read_timeout 60s;
+        proxy_next_upstream error timeout http_502 http_503 http_504;
+        proxy_next_upstream_tries 3;
+        proxy_next_upstream_timeout 10s;
+    }
+
+    # SSL configuration will be added by Certbot
+    # Run: sudo certbot --nginx -d thecollectiveresourceguide.org -d www.thecollectiveresourceguide.org
+    listen 80;
+}
