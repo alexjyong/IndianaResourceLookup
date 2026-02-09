@@ -1,0 +1,56 @@
+# Nginx configuration for Indiana Resource Lookup
+#
+# IMPORTANT: After copying this file, run Certbot to enable SSL:
+#   sudo certbot --nginx -d thecollectiveresourceguide.org -d www.thecollectiveresourceguide.org
+#
+# Setup steps:
+# 1. Copy to /etc/nginx/sites-available/thecollectiveresourceguide.org
+# 2. Link: sudo ln -s /etc/nginx/sites-available/thecollectiveresourceguide.org /etc/nginx/sites-enabled/
+# 3. Test: sudo nginx -t
+# 4. Reload: sudo systemctl reload nginx
+# 5. Run Certbot (step above) to add SSL
+
+upstream flask_app {
+    server 127.0.0.1:5000 max_fails=3 fail_timeout=10s;
+    keepalive 8;
+}
+
+# HTTP - redirects to HTTPS (Certbot will modify this)
+server {
+    listen 80;
+    server_name thecollectiveresourceguide.org www.thecollectiveresourceguide.org;
+
+    # Certbot will add redirect to HTTPS here
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+# HTTPS - main server block
+server {
+    listen 443 ssl;
+    server_name thecollectiveresourceguide.org www.thecollectiveresourceguide.org;
+
+    # SSL certificates - Certbot will update these paths
+    ssl_certificate /etc/letsencrypt/live/thecollectiveresourceguide.org/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/thecollectiveresourceguide.org/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    location / {
+        proxy_pass http://flask_app;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Connection "";
+
+        # Retry on connection errors (covers container restart)
+        proxy_connect_timeout 5s;
+        proxy_read_timeout 60s;
+        proxy_next_upstream error timeout http_502 http_503 http_504;
+        proxy_next_upstream_tries 3;
+        proxy_next_upstream_timeout 10s;
+    }
+}

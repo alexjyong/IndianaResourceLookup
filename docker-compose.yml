@@ -4,11 +4,9 @@ services:
   web:
     build: .
     image: indianaresourcemap:latest
-    container_name: indiana-resource-lookup
     ports:
       - "5000:5000"
     volumes:
-      # Mount static files and data for easier updates without rebuilding
       - ./static:/app/static
       - ./templates:/app/templates
       - ./utilities/data:/app/utilities/data
@@ -18,10 +16,16 @@ services:
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5000"]
-      interval: 30s
-      timeout: 10s
+      interval: 10s
+      timeout: 5s
       retries: 3
-      start_period: 40s
+      start_period: 15s
+    deploy:
+      update_config:
+        order: start-first
+        failure_action: rollback
+      rollback_config:
+        order: stop-first
 
   # Optional: Add a reverse proxy for production
   # Uncomment if you want nginx for SSL termination and better performance

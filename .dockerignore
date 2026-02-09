@@ -45,6 +45,9 @@ venv.bak/
 .env.test
 .env.production
 
+# Server config examples
+nginx.conf.example
+
 # Logs
 *.log
 logs/

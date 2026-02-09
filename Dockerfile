@@ -31,7 +31,8 @@ RUN pip install --no-cache-dir \
     requests \
     geopandas \
     shapely \
-    cachetools
+    cachetools \
+    gunicorn
 
 # Copy application files
 COPY . .
@@ -39,5 +40,5 @@ COPY . .
 # Expose port
 EXPOSE 5000
 
-# Run the application
-CMD ["python", "app.py"]
+# Run with Gunicorn (production WSGI server)
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "2", "--preload", "--access-logfile", "-", "app:app"]
