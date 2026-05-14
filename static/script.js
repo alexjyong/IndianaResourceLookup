@@ -262,8 +262,9 @@ $(document).ready(function() {
 
 function initializeMap() {
     map = L.map('map').setView([40.2672, -86.1349], 7); // Centered on Indiana
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        referrerPolicy: 'origin',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>'
     }).addTo(map);
 }
 
@@ -341,18 +342,18 @@ function updateMap(data, county, filter) {
 function createResourceDetails(data, type) {
     let directionsLink = '';
     if (data.Address && data.Address.trim() !== '') {
-        directionsLink = `<a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.Address)}" target="_blank">Get Directions</a><br>`;
+        directionsLink = `<a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(data.Address)}" target="_blank" rel="noopener noreferrer">Get Directions</a><br>`;
     } else if (data.Latitude && data.Longitude) {
-        directionsLink = `<a href="https://www.google.com/maps/dir/?api=1&destination=${data.Latitude},${data.Longitude}" target="_blank">Get Directions</a><br>`;
+        directionsLink = `<a href="https://www.google.com/maps/dir/?api=1&destination=${data.Latitude},${data.Longitude}" target="_blank" rel="noopener noreferrer">Get Directions</a><br>`;
     }
 
     return `
         <strong>Address:</strong> ${data.Address || 'Not available'}<br>
         <strong>Phone:</strong> ${data.Phone ? `<a href="tel:${data.Phone}">${data.Phone}</a>` : 'Not available'}<br>
-        <strong>Website:</strong> ${data.Website && data.Website !== "N/A" ? `<a href="${data.Website}" target="_blank">${data.Website}</a>` : 'Not available'}<br>
+        <strong>Website:</strong> ${data.Website && data.Website !== "N/A" ? `<a href="${data.Website}" target="_blank" rel="noopener noreferrer">${data.Website}</a>` : 'Not available'}<br>
         <strong>Hours:</strong>
         <ul>${data.Hours && data.Hours.length > 0 ? data.Hours.map(hour => `<li>${hour}</li>`).join('') : '<li>Not available</li>'}</ul>
-        ${directionsLink}<a href="#" class="report-link" data-name="${data.Name}" data-toggle="modal" data-target="#reportModal">Report Issues</a>
+        ${directionsLink}<a href="#" class="report-link" data-name="${data.Name}">Report Issues</a>
     `;
 }
 
@@ -376,22 +377,19 @@ function displayResults(data, filter) {
     }
 
     if (data.food_pantries && data.food_pantries.length > 0) {
-        resultsDiv.append(`<h4 class="mt-4 mb-3" style="color: #d35400;">Food Pantries</h4>`);
+        resultsDiv.append(`<h4 class="mt-4 mb-3 food-pantry-heading">Food Pantries</h4>`);
         data.food_pantries.forEach(foodPantry => {
             resultsDiv.append(createCard(foodPantry, 'Food Pantry'));
         });
     }
 
-    $('.report-link').on('click', function() {
-        const locationName = $(this).data('name');
-        $('#location').val(locationName);
-    });
 }
 
 function createCard(data, type) {
     const borderStyle = type === 'Trustee' ? 'border-primary' : 'border-orange';
+    const pantryBorderClass = type === 'Trustee' ? '' : 'food-pantry-card';
     return `
-        <div class="card mb-3 ${borderStyle}" ${type !== 'Trustee' ? 'style="border-color: #d35400 !important;"' : ''}>
+        <div class="card mb-3 ${borderStyle} ${pantryBorderClass}">
             <div class="card-body">
                 <h5 class="card-title">${data.Name}</h5>
                 <p class="card-text">
@@ -402,7 +400,46 @@ function createCard(data, type) {
     `;
 }
 
-$(document).on('click', '.report-link', function() {
+function setReportLocation(locationName) {
+    $('#report-location').val(locationName || '');
+}
+
+function openReportModal(locationName = '') {
+    setReportLocation(locationName);
+    const modalOverlay = $('#reportModalOverlay');
+    modalOverlay.removeAttr('hidden');
+    $('body').css('overflow', 'hidden');
+    $('#report-email').trigger('focus');
+}
+
+function closeReportModal() {
+    $('#reportModalOverlay').attr('hidden', 'hidden');
+    $('body').css('overflow', '');
+}
+
+$(document).on('click', '.report-link', function(event) {
+    event.preventDefault();
     const locationName = $(this).data('name');
-    $('#location').val(locationName);
+    openReportModal(locationName);
+});
+
+$('#openReportModalLink, #openReportModalBtn').on('click', function(event) {
+    event.preventDefault();
+    openReportModal('');
+});
+
+$('#closeReportModalTop, #closeReportModalBtn').on('click', function() {
+    closeReportModal();
+});
+
+$('#reportModalOverlay').on('click', function(event) {
+    if (event.target.id === 'reportModalOverlay') {
+        closeReportModal();
+    }
+});
+
+$(document).on('keydown', function(event) {
+    if (event.key === 'Escape' && !$('#reportModalOverlay').is('[hidden]')) {
+        closeReportModal();
+    }
 });
