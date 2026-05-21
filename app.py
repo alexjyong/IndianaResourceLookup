@@ -10,6 +10,30 @@ from cachetools import TTLCache
 
 app = Flask(__name__)
 
+
+@app.after_request
+def add_security_headers(response):
+    # Restrict third-party resources to the minimum needed for map and UI functionality.
+    csp = (
+        "default-src 'self'; "
+        "script-src 'self' https://code.jquery.com https://unpkg.com; "
+        "style-src 'self' https://cdn.jsdelivr.net https://unpkg.com; "
+        "style-src-elem 'self' https://cdn.jsdelivr.net https://unpkg.com; "
+        "style-src-attr 'unsafe-inline'; "
+        "img-src 'self' data: https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://*.openstreetmap.org https://raw.githubusercontent.com https://cdnjs.cloudflare.com; "
+        "connect-src 'self' https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://*.openstreetmap.org; "
+        "font-src 'self'; "
+        "frame-ancestors 'none'; "
+        "base-uri 'self'; "
+        "form-action 'self' https://formspree.io"
+    )
+    response.headers['Content-Security-Policy'] = csp
+    response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['X-Frame-Options'] = 'DENY'
+    response.headers['Permissions-Policy'] = 'geolocation=(self), camera=(), microphone=()'
+    return response
+
 class RateLimiter:
     def __init__(self, min_interval=1.0):
         self.min_interval = min_interval
