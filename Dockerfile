@@ -25,14 +25,10 @@ RUN apt-get update && \
 ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
 ENV C_INCLUDE_PATH=/usr/include/gdal
 
-# Install Python dependencies
-RUN pip install --no-cache-dir \
-    Flask \
-    requests \
-    geopandas \
-    shapely \
-    cachetools \
-    gunicorn
+# Install Python dependencies from a pinned, hash-verified requirements file.
+# This prevents supply-chain tampering and ensures reproducible builds.
+COPY requirements.txt .
+RUN pip install --no-cache-dir --require-hashes -r requirements.txt
 
 # Copy application files
 COPY . .

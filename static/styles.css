@@ -2,6 +2,24 @@ body {
     padding: 20px;
     background-color: #f8f9fa;
 }
+
+/* Accessibility: skip link, hidden until focused */
+.visually-hidden-focusable {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    padding: 12px 24px;
+    background: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 0 0 4px 0;
+}
+
+.visually-hidden-focusable:focus {
+    outline: 3px solid #ffbf47;
+}
 .card {
     margin-bottom: 20px;
     border: 1px solid #dee2e6;
