@@ -6,9 +6,22 @@ import json
 import config
 import time
 import threading
+import logging
+from logging.handlers import RotatingFileHandler
 from cachetools import TTLCache
 
 app = Flask(__name__)
+
+# ---------------------------------------------------------------------------
+# Logging setup
+# ---------------------------------------------------------------------------
+log_handler = RotatingFileHandler('app.log', maxBytes=10_000_000, backupCount=5)
+log_handler.setFormatter(logging.Formatter(
+    '[%(asctime)s] %(levelname)s in %(module)s: %(message)s'
+))
+log_handler.setLevel(logging.INFO)
+app.logger.addHandler(log_handler)
+app.logger.setLevel(logging.INFO)
 
 
 @app.after_request
@@ -19,7 +32,6 @@ def add_security_headers(response):
         "script-src 'self' https://code.jquery.com https://unpkg.com; "
         "style-src 'self' https://cdn.jsdelivr.net https://unpkg.com; "
         "style-src-elem 'self' https://cdn.jsdelivr.net https://unpkg.com; "
-        "style-src-attr 'unsafe-inline'; "
         "img-src 'self' data: https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://*.openstreetmap.org https://raw.githubusercontent.com https://cdnjs.cloudflare.com; "
         "connect-src 'self' https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://*.openstreetmap.org; "
         "font-src 'self'; "
@@ -33,6 +45,12 @@ def add_security_headers(response):
     response.headers['X-Frame-Options'] = 'DENY'
     response.headers['Permissions-Policy'] = 'geolocation=(self), camera=(), microphone=()'
     return response
+
+
+@app.before_request
+def log_request():
+    app.logger.info('%s %s from %s', request.method, request.path, request.remote_addr)
+
 
 class RateLimiter:
     def __init__(self, min_interval=1.0):
@@ -62,12 +80,23 @@ def cache_geocode(query, result):
     geocode_cache[query] = result
 
 township_gdf = gpd.read_file(config.TOWNSHIP_GEO_FILE)
+app.logger.info('Township GeoJSON loaded (%d features)', len(township_gdf))
 
-with open(config.TRUSTEE_DATA_FILE, 'r') as f:
-    trustee_data_cache = json.load(f)
+try:
+    with open(config.TRUSTEE_DATA_FILE, 'r') as f:
+        trustee_data_cache = json.load(f)
+    app.logger.info('Trustee data loaded (%d records)', len(trustee_data_cache))
+except (FileNotFoundError, json.JSONDecodeError) as e:
+    app.logger.error('Failed to load trustee data: %s', e)
+    raise
 
-with open(config.FOOD_PANTRY_FILE, 'r') as f:
-    food_pantry_data_cache = json.load(f)
+try:
+    with open(config.FOOD_PANTRY_FILE, 'r') as f:
+        food_pantry_data_cache = json.load(f)
+    app.logger.info('Food pantry data loaded (%d records)', len(food_pantry_data_cache))
+except (FileNotFoundError, json.JSONDecodeError) as e:
+    app.logger.error('Failed to load food pantry data: %s', e)
+    raise
 
 def get_township(latitude, longitude):
     point = Point(longitude, latitude)
@@ -175,12 +204,16 @@ def geocode():
             }), 404
 
     except requests.exceptions.Timeout:
+        app.logger.warning('Nominatim request timed out for %s', cache_key)
         return jsonify({"error": "Request timed out. Please try again"}), 504
     except requests.exceptions.RequestException as e:
+        app.logger.error('Nominatim connection error for %s: %s', cache_key, e)
         return jsonify({"error": f"Error connecting to geocoding service: {str(e)}"}), 503
     except (ValueError, KeyError) as e:
+        app.logger.error('Invalid Nominatim response for %s: %s', cache_key, e)
         return jsonify({"error": "Invalid response from geocoding service"}), 500
     except Exception as e:
+        app.logger.exception('Unexpected error in geocode for %s', cache_key)
         return jsonify({"error": "An unexpected error occurred"}), 500
 
 def get_trustee_info(county, township):
@@ -274,7 +307,9 @@ def reverse_geocode():
         })
 
     except Exception as e:
+        app.logger.exception('Unexpected error in reverse-geocode for lat=%s, lon=%s', lat, lon)
         return jsonify({"error": "An unexpected error occurred"}), 500
+
 
 if __name__ == '__main__':
     app.run(host=config.FLASK_HOST, port=config.FLASK_PORT)

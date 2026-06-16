@@ -15,12 +15,30 @@ $(document).ready(function() {
     const findNearestBtn = $('#findNearestBtn');
     const errorMessageDiv = $('#error-message');
 
+    let errorTimeout = null;
+
     function showError(message) {
+        clearTimeout(errorTimeout);
         errorMessageDiv.text(message).fadeIn();
-        setTimeout(() => errorMessageDiv.fadeOut(), 5000);
+        // Add dismiss button if not already present
+        if (errorMessageDiv.find('.btn-close').length === 0) {
+            errorMessageDiv.prepend(
+                '<button type="button" class="btn-close me-2" aria-label="Close" style="float:left;"></button>'
+            );
+        }
+        errorMessageDiv.find('.btn-close').on('click', function() {
+            clearTimeout(errorTimeout);
+            errorMessageDiv.fadeOut(300);
+        });
+        // Slow fade out after 10 seconds
+        errorTimeout = setTimeout(() => {
+            errorMessageDiv.fadeOut(1000);
+        }, 10000);
     }
 
     function clearError() {
+        clearTimeout(errorTimeout);
+        errorMessageDiv.off('click').find('.btn-close').off('click').remove();
         errorMessageDiv.hide();
     }
 
@@ -258,6 +276,13 @@ $(document).ready(function() {
     });
 
     initializeMap();
+
+    // Dev-only: show test error button when ?debug=1 is in the URL
+    if (new URLSearchParams(window.location.search).has('debug')) {
+        $('#error-test-btn').show().on('click', function() {
+            showError('This is a test error message. The error display is working correctly.');
+        });
+    }
 });
 
 function initializeMap() {
