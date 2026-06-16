@@ -276,13 +276,6 @@ $(document).ready(function() {
     });
 
     initializeMap();
-
-    // Dev-only: show test error button when ?debug=1 is in the URL
-    if (new URLSearchParams(window.location.search).has('debug')) {
-        $('#error-test-btn').show().on('click', function() {
-            showError('This is a test error message. The error display is working correctly.');
-        });
-    }
 });
 
 function initializeMap() {
